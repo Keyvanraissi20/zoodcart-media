@@ -8,3 +8,6 @@ Reference implementation of the 2026-11-22 "friend-helps" Reel (reels/2026-11-22
 - mix.py: places dialogue clips + synthesized SFX -> final.mp4 (H.264 High, yuv420p, AAC).
 Audio clips: one Gemini TTS request per line (tts/requests/DATE-<slug>-<key>.json), then trim silence + atempo=1.08.
 Voices used: narrator Kore, main character Fenrir, friend Charon.
+2026-11-23 "uni-apply" variant (scene_/build_2026-11-23-uni-apply.*): library background (procedural bookshelves), female lead with long hair
+(`hairBack` option drawn behind the body + `hairLong`), `hairSpiky`, glasses on lead. Voices: Leda (Sara), Puck (Nima).
+Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
