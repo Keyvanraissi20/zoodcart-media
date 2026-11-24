@@ -11,3 +11,11 @@ Voices used: narrator Kore, main character Fenrir, friend Charon.
 2026-11-23 "uni-apply" variant (scene_/build_2026-11-23-uni-apply.*): library background (procedural bookshelves), female lead with long hair
 (`hairBack` option drawn behind the body + `hairLong`), `hairSpiky`, glasses on lead. Voices: Leda (Sara), Puck (Nima).
 Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
+2026-11-24 STORY variant (scene_story_cafe.html + build_story_cafe.py + mix_story_cafe.py), 1080x1920, safe zone y 250..1600:
+- Café background (`room()`: bricks, window with city, cup shelf, pendant lamps, "Café Luna" sign), counter in front (y 1290+) with small POS + coffee cup.
+- Top panel (y 270..910) with header pill (`#stp` step badge + `#ht` title) and pages switched by events: hook (card + POS + "?"), zoodcart.ir page with card,
+  Wallet screen (Add to Wallet button press -> card flies into stack -> Added check), POS close-up, 3 place badges (café / shop / hotel & travel).
+- Reusable helpers: `posTerminal(x,y,scale,state 0 Tap|1 Processing|2 Approved,t)`, `phoneBig()`, `phoneInHand()`, contactless `arcs()`,
+  hair styles `hairBob`+`beret`, `hairShortCurl`+`beardGrey`, `apronSvg` (option `apron`), option `hold` (prop drawn with the arms).
+- IMPORTANT: inline SVG inside an rtl parent renders text-anchor start on the wrong side -> CSS `svg text{direction:ltr}` is set.
+- Subtitles at top:1335 (end above 1600). Voices: narrator Kore, host Negar Aoede, barista Orus. Format F3, mode حضوری.

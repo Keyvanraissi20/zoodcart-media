@@ -1,0 +1,279 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- 2026-11-24 STORY variant (1080x1920, safe zone y 250..1600): café background, step-by-step guide (F3),
+     zoodcart.ir page, Wallet "Add" screen, POS terminal close-up (Tap -> Processing -> Approved), places badges. -->
+<style>
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Medium.ttf);font-weight:500}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Bold.ttf);font-weight:700}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Black.ttf);font-weight:900}
+svg text{direction:ltr;unicode-bidi:embed}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#1A0F0A;font-family:Vaz,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#panel{position:absolute;left:80px;top:270px;width:920px;height:640px;border-radius:40px;background:#F7F5FF;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;transform-origin:50% 0%}
+#hdr{position:absolute;left:0;right:0;top:0;height:104px;background:#1E1440;display:flex;align-items:center;justify-content:center;gap:20px;direction:rtl}
+.stp{font-size:30px;font-weight:900;color:#1E1440;background:#FFD43B;border-radius:999px;padding:2px 24px}
+.ht{font-size:40px;font-weight:900;color:#fff}
+.pg{position:absolute;left:0;top:104px;width:920px;height:536px;opacity:0}
+.zc{font-size:22px;font-weight:900;color:#fff;background:#7C3AED;border-radius:12px;padding:4px 12px}
+.card{width:500px;height:300px;border-radius:30px;background:linear-gradient(135deg,#9F67FF 0%,#7C3AED 45%,#4C1D95 100%);position:relative;box-shadow:0 20px 50px rgba(124,58,237,.5);direction:ltr;text-align:left;overflow:hidden}
+.card .chip{position:absolute;left:44px;top:108px;width:76px;height:56px;border-radius:12px;background:linear-gradient(135deg,#FFE29A,#D4A537)}
+.card .nm{position:absolute;left:44px;top:32px;font-size:34px;font-weight:900;color:#fff}
+.card .vt{position:absolute;right:40px;top:40px;font-size:22px;font-weight:700;color:#E9DDFF;letter-spacing:3px}
+.card .num{position:absolute;left:44px;bottom:40px;font-size:32px;font-weight:700;color:#fff;letter-spacing:4px}
+.card .vs{position:absolute;right:40px;bottom:32px;font-size:44px;font-weight:900;font-style:italic;color:#fff}
+.card .shine{position:absolute;left:-60%;top:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}
+.url{position:absolute;left:60px;right:60px;top:26px;height:60px;border-radius:30px;background:#E6E1F5;display:flex;align-items:center;justify-content:center;gap:12px;font-size:32px;font-weight:700;color:#3B2667;direction:ltr}
+#subs{position:absolute;left:50px;right:50px;top:1335px;direction:rtl;text-align:center}
+.sb{display:inline-block;background:rgba(26,15,10,.86);border-radius:30px;padding:20px 34px 24px;border:3px solid rgba(255,212,59,.4);max-width:980px}
+.who{display:inline-block;font-size:28px;font-weight:900;color:#fff;border-radius:999px;padding:4px 22px;margin-bottom:6px}
+.tx{font-size:44px;font-weight:700;color:#fff;line-height:1.5}
+#cta{background:linear-gradient(180deg,#0B0820,#1A1035);direction:rtl;text-align:center;opacity:0}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);background:#7C3AED}
+.pill{display:inline-block;background:#7C3AED;color:#fff;font-weight:700;border-radius:999px}
+.opill{display:inline-block;border:5px solid #C4A7FF;color:#C4A7FF;font-weight:700;border-radius:999px}
+.badge{width:250px;height:300px;border-radius:30px;background:#fff;box-shadow:0 10px 30px rgba(30,20,64,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;direction:rtl}
+.badge b{font-size:36px;font-weight:900;color:#1E1440}
+</style></head>
+<body><div id="stage">
+<svg id="room" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="chars" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="front" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="panel">
+  <div id="hdr"><span class="stp" id="stp"></span><span class="ht" id="ht"></span></div>
+  <!-- hook -->
+  <div class="pg" id="pgHook" style="background:linear-gradient(180deg,#FFF8E6,#FFE8B0);direction:rtl;text-align:center">
+    <svg id="hookSvg" direction="ltr" style="direction:ltr" width="920" height="536" viewBox="0 0 920 536"></svg>
+  </div>
+  <!-- step 1: zoodcart.ir -->
+  <div class="pg" id="pg1" style="background:#F7F5FF">
+    <div class="url"><svg width="18" height="22" viewBox="0 0 18 22"><rect x="1" y="9" width="16" height="12" rx="3" fill="#2B8A3E"/><path d="M4 9V6a5 5 0 0110 0v3" stroke="#2B8A3E" stroke-width="3" fill="none"/></svg>zoodcart.ir</div>
+    <div class="card" id="card1" style="position:absolute;left:210px;top:120px"><div class="nm">zoodcart</div><div class="vt">VIRTUAL CARD</div><div class="chip"></div><div class="num">•••• 7731</div><div class="vs">VISA</div><div class="shine" id="shine1"></div></div>
+    <div id="ok1" style="position:absolute;left:0;right:0;top:446px;text-align:center;direction:rtl;font-size:36px;font-weight:900;color:#2B8A3E">ویزا کارت مجازی آماده‌ست</div>
+  </div>
+  <!-- step 2: wallet -->
+  <div class="pg" id="pg2" style="background:#111"><svg id="walletSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <!-- step 3: POS close-up -->
+  <div class="pg" id="pg3" style="background:linear-gradient(180deg,#FFF4E0,#F5D9A8)"><svg id="posSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <!-- places -->
+  <div class="pg" id="pg4" style="background:#F3F0FF;display:flex;align-items:center;justify-content:center;gap:34px">
+    <div class="badge" id="bd0"></div><div class="badge" id="bd1"></div><div class="badge" id="bd2"></div>
+  </div>
+</div>
+<svg id="fx" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="subs"></div>
+<div id="cta" class="layer">
+  <div class="glow" style="left:-250px;top:250px;width:800px;height:800px;opacity:.45"></div>
+  <div class="glow" style="left:550px;top:1050px;width:750px;height:750px;opacity:.35"></div>
+  <div style="position:absolute;left:0;right:0;top:330px" id="ctain">
+    <div class="pill" style="font-size:52px;padding:16px 56px">آنلاین، حضوری، توی سفر</div>
+    <div class="card" style="margin:70px auto 0;transform:rotate(-6deg)"><div class="nm">zoodcart</div><div class="vt">VIRTUAL CARD</div><div class="chip"></div><div class="num">•••• 7731</div><div class="vs">VISA</div></div>
+    <div style="font-size:150px;font-weight:900;color:#fff;direction:ltr;margin-top:60px;line-height:1.1">zoodcart.ir</div>
+    <div style="font-size:54px;color:#BEBACD;font-weight:500;margin-top:14px">ثبت سفارش آنلاین</div>
+    <div style="font-size:42px;color:#C4A7FF;font-weight:700;margin-top:22px">احراز هویت امن + فاکتور رسمی</div>
+    <div class="opill" style="font-size:50px;padding:12px 70px;margin-top:40px">لینک در بیو</div>
+  </div>
+</div>
+</div>
+<script>
+const C = window.CUES; const AMP = window.AMPS; const FPS=30;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const lerp=(a,b,x)=>a+(b-a)*x;
+const L=(p,q,x)=>[lerp(p[0],q[0],x),lerp(p[1],q[1],x)];
+function amp(key,t){const c=C.cues[key]; if(!c) return 0; const s=c[0],d=c[1]; if(t<s||t>s+d) return 0; const a=AMP[key]; const i=Math.floor((t-s)*FPS); return a[Math.min(i,a.length-1)]||0}
+const $=id=>document.getElementById(id);
+const E=C.ev;
+
+// ---------- café background ----------
+function room(){
+ let s=`<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5C3A28"/><stop offset="1" stop-color="#3A2418"/></linearGradient>
+ <radialGradient id="lamp" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD8A0" stop-opacity=".45"/><stop offset="1" stop-color="#FFD8A0" stop-opacity="0"/></radialGradient></defs>
+ <rect width="1080" height="1920" fill="url(#wall)"/>`;
+ // brick pattern
+ for(let r=0;r<40;r++)for(let c=0;c<12;c++){const x=c*100+(r%2?50:0)-50,y=r*48; s+=`<rect x="${x+3}" y="${y+3}" width="94" height="42" rx="6" fill="#6B4430" opacity="${0.25+0.2*Math.abs(Math.sin(r*3.1+c*7.7))}"/>`}
+ // window with city
+ s+=`<g transform="translate(700,960)"><rect width="330" height="270" rx="20" fill="#2B1A12"/><rect x="14" y="14" width="302" height="242" rx="12" fill="#8EC5FC"/>
+   <rect x="30" y="140" width="60" height="116" fill="#5C7CFA"/><rect x="100" y="100" width="70" height="156" fill="#748FFC"/><rect x="180" y="160" width="50" height="96" fill="#5C7CFA"/><rect x="240" y="120" width="66" height="136" fill="#91A7FF"/>
+   <path d="M165 14 L165 256 M14 135 L316 135" stroke="#2B1A12" stroke-width="10"/></g>`;
+ // shelf with cups/jars on left
+ s+=`<g transform="translate(40,1000)"><rect width="330" height="18" rx="6" fill="#A0714A"/>`;
+ const cc=['#FFFFFF','#FFD43B','#E64980','#20C997','#FFFFFF'];
+ for(let i=0;i<5;i++) s+=`<rect x="${14+i*64}" y="-62" width="48" height="62" rx="8" fill="${cc[i]}"/><path d="M${62+i*64} -46 q18 4 0 26" stroke="${cc[i]}" stroke-width="8" fill="none"/>`;
+ s+=`</g>`;
+ // pendant lights
+ for(const x of [180,540,900]){s+=`<circle cx="${x}" cy="1000" r="260" fill="url(#lamp)"/><path d="M${x} 900 L${x} 940" stroke="#2B1A12" stroke-width="5"/><path d="M${x-50} 980 Q${x} 920 ${x+50} 980Z" fill="#FFB84D"/>`}
+ // cafe name sign (above characters, below panel)
+ s+=`<g transform="translate(540,960)"><rect x="-150" y="-28" width="300" height="64" rx="32" fill="#2B1A12" stroke="#FFD43B" stroke-width="4"/><text x="0" y="16" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="36" fill="#FFD43B">Café Luna</text></g>`;
+ s+=`<rect y="1640" width="1080" height="280" fill="#21140D"/>`;
+ return s;
+}
+$('room').innerHTML=room();
+
+// ---------- character (same engine as scene.html) ----------
+function arm(sh,hand,col,skin,thumb,point){
+ let s=`<path d="M${sh[0]} ${sh[1]} Q ${(sh[0]+hand[0])/2+(sh[0]<0?-40:40)} ${(sh[1]+hand[1])/2+30} ${hand[0]} ${hand[1]}" stroke="${col}" stroke-width="58" fill="none" stroke-linecap="round"/>`;
+ s+=`<circle cx="${hand[0]}" cy="${hand[1]}" r="32" fill="${skin}"/>`;
+ if(thumb) s+=`<rect x="${hand[0]-9}" y="${hand[1]-62}" width="18" height="40" rx="9" fill="${skin}"/>`;
+ if(point) s+=`<rect x="${hand[0]-70}" y="${hand[1]-9}" width="50" height="18" rx="9" fill="${skin}"/>`;
+ return s;
+}
+function character(o){
+ const sk=o.skin, dk=o.skinDark;
+ let s=`<g transform="translate(${o.x},${o.y}) scale(${o.sc||1}) rotate(${o.rot||0})">`+(o.hairBack||'');
+ const tl=o.torso||340;
+ const back = o.handL[1]>200 && o.handR[1]>200;
+ const arms = arm([-120,175],o.handL,o.shirt2,sk,false,o.pointL)+arm([120,175],o.handR,o.shirt2,sk,o.thumbR,false)+(o.hold||'');
+ if(back) s+=arms;
+ s+=`<path d="M -160 ${tl} Q -165 160 -70 130 L 70 130 Q 165 160 160 ${tl} Z" fill="${o.shirt}"/>`;
+ s+=`<path d="M -70 132 Q 0 210 70 132" fill="none" stroke="${o.shirt2}" stroke-width="16" stroke-linecap="round"/>`;
+ s+=(o.apron||'');
+ s+=`<rect x="-30" y="78" width="60" height="62" rx="20" fill="${dk}"/>`;
+ if(!back) s+=arms;
+ s+=`<circle cx="-100" cy="12" r="22" fill="${dk}"/><circle cx="100" cy="12" r="22" fill="${dk}"/>`;
+ s+=`<ellipse cx="0" cy="0" rx="104" ry="108" fill="${sk}"/>`;
+ s+=o.hairSvg;
+ const ey=o.blink?2:24, lx=o.lookx||0, ly=o.looky||0;
+ for(const ex of [-38,38]){
+   s+=`<ellipse cx="${ex}" cy="2" rx="19" ry="${ey}" fill="#fff"/>`;
+   if(!o.blink) s+=`<circle cx="${ex+lx}" cy="${4+ly}" r="11" fill="#1B1430"/><circle cx="${ex+lx+4}" cy="${ly-1}" r="3.5" fill="#fff"/>`;
+ }
+ if(o.glasses) s+=`<g fill="none" stroke="#1B1430" stroke-width="6"><circle cx="-38" cy="2" r="30"/><circle cx="38" cy="2" r="30"/><path d="M-8 -2 L8 -2"/></g>`;
+ const B={neutral:[-40,-40],angry:[-26,-46],sad:[-52,-34],up:[-60,-56],happy:[-48,-44]}[o.brow];
+ s+=`<path d="M -60 ${B[1]} L -18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/><path d="M 60 ${B[1]} L 18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/>`;
+ s+=`<circle cx="-62" cy="40" r="16" fill="#FF8787" opacity=".35"/><circle cx="62" cy="40" r="16" fill="#FF8787" opacity=".35"/>`;
+ if(o.beard) s+=o.beard;
+ const op=o.open||0, m=o.mouth;
+ if(op>0.06){
+   const h=10+44*Math.min(1,op*1.4);
+   s+=`<path d="M -34 48 Q 0 ${48+h*1.5} 34 48 Z" fill="#5C1A1A"/><path d="M -18 ${48+h*0.9} Q 0 ${48+h*1.3} 18 ${48+h*0.9} Q 0 ${48+h*0.6} -18 ${48+h*0.9}Z" fill="#FF6B6B"/>`;
+ } else if(m==='smile') s+=`<path d="M -30 46 Q 0 74 30 46" stroke="#5C1A1A" stroke-width="9" fill="none" stroke-linecap="round"/>`;
+ else if(m==='big') s+=`<path d="M -40 42 Q 0 108 40 42 Z" fill="#5C1A1A"/><path d="M -20 74 Q 0 92 20 74 Q 0 66 -20 74Z" fill="#FF6B6B"/>`;
+ else if(m==='o') s+=`<ellipse cx="0" cy="58" rx="14" ry="18" fill="#5C1A1A"/>`;
+ else s+=`<path d="M -22 56 L 22 56" stroke="#5C1A1A" stroke-width="9" stroke-linecap="round"/>`;
+ s+=(o.extra||'');
+ return s+'</g>';
+}
+// hair styles
+const hairBob=`<path d="M -116 40 Q -130 -130 0 -128 Q 130 -130 116 40 L 96 40 Q 96 -40 60 -60 Q 0 -40 -50 -70 Q -96 -40 -96 40 Z" fill="#1B1B1B"/>`;
+const beret=`<ellipse cx="-10" cy="-112" rx="112" ry="38" fill="#E8590C" transform="rotate(-10 0 -112)"/><circle cx="-14" cy="-150" r="10" fill="#E8590C"/>`;
+const hairShortCurl=(()=>{let s='';const pts=[[-88,-56],[-62,-92],[-24,-112],[18,-114],[56,-98],[86,-64]];for(const p of pts)s+=`<circle cx="${p[0]}" cy="${p[1]}" r="34" fill="#C9C9C9"/>`;return s})();
+const beardGrey=`<path d="M -96 20 Q -90 120 0 128 Q 90 120 96 20 Q 70 80 0 84 Q -70 80 -96 20Z" fill="#C9C9C9"/>`;
+const apronSvg=`<path d="M -80 170 L 80 170 L 96 560 L -96 560 Z" fill="#F1F3F5"/><path d="M -80 172 L -120 140 M 80 172 L 120 140" stroke="#F1F3F5" stroke-width="10"/><rect x="-40" y="240" width="80" height="46" rx="8" fill="#DEE2E6"/>`;
+function phoneInHand(h,glow){return `<g transform="translate(${h[0]},${h[1]-40}) rotate(-12)"><rect x="-34" y="-62" width="68" height="124" rx="14" fill="#1E1E2E"/><rect x="-28" y="-54" width="56" height="106" rx="9" fill="${glow?'#7C3AED':'#4C1D95'}"/><rect x="-22" y="-20" width="44" height="28" rx="5" fill="#C4A7FF"/></g><circle cx="${h[0]}" cy="${h[1]+10}" r="30" fill="#8D5524"/>`}
+function sparkles(t){let s='';const P=[[-150,-120],[150,-140],[-170,40],[170,20],[0,-190]];P.forEach((p,i)=>{const k=0.6+0.4*Math.sin(t*8+i*1.7);s+=`<path transform="translate(${p[0]},${p[1]}) scale(${k})" d="M0 -26 Q 4 -4 26 0 Q 4 4 0 26 Q -4 4 -26 0 Q -4 -4 0 -26Z" fill="#FFD43B"/>`});return s}
+function arcs(x,y,k,col,rot){let s=`<g transform="translate(${x},${y}) rotate(${rot||0})" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round">`;for(let i=0;i<3;i++){const r=26+i*24;const o=clamp(k*3-i,0,1);s+=`<path d="M ${r*0.5} ${-r*0.87} A ${r} ${r} 0 0 1 ${r*0.5} ${r*0.87}" opacity="${o}"/>`}return s+'</g>'}
+
+// ---------- POS terminal (reusable): state 0 tap, 1 processing, 2 approved ----------
+function posTerminal(x,y,sc,state,t){
+ let scr='';
+ if(state===0) scr=`<text x="0" y="-40" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#fff">Tap</text>`+arcs(-14,10,(t*1.5)%1,'#C4A7FF',0);
+ else if(state===1) scr=`<g transform="translate(0,-14) rotate(${t*500})"><circle r="30" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><path d="M0 -30 A30 30 0 0 1 30 0" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></g><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="24" fill="#fff">Processing</text>`;
+ else scr=`<circle cx="0" cy="-14" r="40" fill="#2F9E44"/><path d="M-18 -14 L-5 0 L20 -28" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="28" fill="#8CE99A">Approved</text>`;
+ let keys='';for(let r=0;r<3;r++)for(let c=0;c<3;c++)keys+=`<rect x="${-66+c*48}" y="${130+r*36}" width="40" height="28" rx="7" fill="#495057"/>`;
+ return `<g transform="translate(${x},${y}) scale(${sc})"><rect x="-100" y="-130" width="200" height="380" rx="34" fill="#343A40"/><rect x="-82" y="-110" width="164" height="210" rx="16" fill="${state===2?'#0B3D1E':'#1E1440'}"/>${scr}${keys}</g>`;
+}
+function phoneBig(x,y,rot,lit){return `<g transform="translate(${x},${y}) rotate(${rot})"><rect x="-90" y="-170" width="180" height="340" rx="32" fill="#1E1E2E"/><rect x="-78" y="-156" width="156" height="312" rx="24" fill="#0F0B1E"/>
+ <rect x="-30" y="-150" width="60" height="14" rx="7" fill="#1E1E2E"/>
+ <g transform="translate(0,-40)"><rect x="-66" y="-42" width="132" height="84" rx="12" fill="#7C3AED"/><text x="-52" y="-12" font-family="Vaz" font-weight="900" font-size="16" fill="#fff">zoodcart</text><text x="50" y="30" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="20" fill="#fff">VISA</text></g>
+ <text x="0" y="70" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="18" fill="${lit?'#8CE99A':'#C4A7FF'}">${lit?'Done':'Hold near reader'}</text></g>`}
+
+function render(t){
+ // ---------- panel pages ----------
+ const pages=[['pgHook',0,E.s1],['pg1',E.s1,E.s2],['pg2',E.s2,E.s3],['pg3',E.s3,E.p4],['pg4',E.p4,99]];
+ for(const [id,a,b] of pages){const o=seg(t,a,a+.3)*(1-seg(t,b,b+.3));$(id).style.opacity=o;$(id).style.transform=`translateX(${(1-seg(t,a,a+.3))*-60}px)`}
+ let stp='',ht='';
+ if(t<E.s1){stp='?';ht='کارت مجازی و پرداخت حضوری'}
+ else if(t<E.s2){stp='قدم ۱';ht='خرید ویزا کارت از زودکارت'}
+ else if(t<E.s3){stp='قدم ۲';ht='افزودن به Apple / Google Wallet'}
+ else if(t<E.p4){stp='قدم ۳';ht='نزدیک کردن گوشی به کارتخوان'}
+ else {stp='کجا؟';ht='هر جا Visa Contactless قبول کنن'}
+ $('stp').textContent=stp; $('ht').textContent=ht;
+ const pin=back(seg(t,0,0.55)); $('panel').style.transform=`scale(${0.6+0.4*pin})`; $('panel').style.opacity=seg(t,0,.2);
+ // hook page
+ { const k=back(seg(t,0.3,0.9)), q=back(seg(t,0.9,1.4));
+   let h=`<g transform="translate(250,280) scale(${k})"><rect x="-140" y="-90" width="280" height="170" rx="22" fill="#7C3AED"/><text x="-110" y="-40" font-family="Vaz" font-weight="900" font-size="30" fill="#fff">zoodcart</text><text x="110" y="56" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="36" fill="#fff">VISA</text></g>`;
+   h+=`<text x="460" y="300" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="90" fill="#1E1440" opacity="${k}">+</text>`;
+   h+=posTerminal(680,250,0.8*k,0,t);
+   h+=`<g transform="translate(820,110) scale(${q}) rotate(${Math.sin(t*6)*10})"><circle r="56" fill="#FA5252"/><text y="30" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="84" fill="#fff">?</text></g>`;
+   $('hookSvg').innerHTML=h; }
+ // step1
+ { const k=ease(seg(t,E.s1+.1,E.s1+.7)); $('card1').style.transform=`translateY(${(1-k)*240}px) rotate(${-6+6*k}deg)`; $('card1').style.opacity=k;
+   $('shine1').style.left=(-60+220*seg(t,E.s1+.9,E.s1+1.8))+'%'; $('ok1').style.opacity=seg(t,E.s1+1.0,E.s1+1.3); }
+ // step2 wallet
+ { const pressed=t>=E.add, k=ease(seg(t,E.add,E.add+.6));
+   let w=`<text x="60" y="70" font-family="Vaz" font-weight="900" font-size="44" fill="#fff">Wallet</text>`;
+   // existing wallet cards stack (grey)
+   w+=`<rect x="540" y="370" width="320" height="120" rx="22" fill="#343A40"/><rect x="540" y="330" width="320" height="120" rx="22" fill="#495057"/>`;
+   const cx=lerp(60,540,k), cy=lerp(110,280,k), cs=lerp(1,0.64,k);
+   w+=`<g transform="translate(${cx},${cy}) scale(${cs})"><rect width="500" height="300" rx="30" fill="#7C3AED"/><rect width="500" height="300" rx="30" fill="url(#cg)"/><text x="40" y="66" font-family="Vaz" font-weight="900" font-size="38" fill="#fff">zoodcart</text><rect x="40" y="110" width="76" height="56" rx="12" fill="#E9C46A"/><text x="40" y="258" font-family="Vaz" font-weight="700" font-size="32" fill="#fff" letter-spacing="4">•••• 7731</text><text x="460" y="262" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="46" fill="#fff">VISA</text></g>`;
+   w=`<defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9F67FF"/><stop offset="1" stop-color="#4C1D95"/></linearGradient></defs>`+w;
+   const bs=(t>=E.add&&t<E.add+.15)?0.95:1;
+   if(!pressed||k<1){ w+=`<g transform="translate(700,170) scale(${bs})" opacity="${1-k}"><rect x="-150" y="-46" width="300" height="92" rx="46" fill="#fff"/><text x="0" y="14" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#111">Add to Wallet</text></g>`;
+     if(!pressed) w+=`<circle cx="760" cy="${210+Math.sin(t*5)*6}" r="28" fill="#FFD43B" opacity=".9"/>`; }
+   if(t>=E.add && t<E.add+.5){const r=(t-E.add)/.5; w+=`<circle cx="700" cy="170" r="${40+r*120}" fill="none" stroke="#fff" stroke-width="6" opacity="${1-r}"/>`}
+   const ok=back(seg(t,E.add+.6,E.add+1.0));
+   w+=`<g transform="translate(260,420) scale(${ok})"><circle r="44" fill="#2F9E44"/><path d="M-20 0 L-6 14 L22 -16" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><text x="330" y="436" font-family="Vaz" font-weight="900" font-size="40" fill="#8CE99A" opacity="${ok>0.02?1:0}">Added</text>`;
+   $('walletSvg').innerHTML=w; }
+ // step3 POS close-up
+ { const st = t<E.tap?0:(t<E.ok?1:2);
+   const k=ease(seg(t,E.s3+.3,E.tap));
+   let p=posTerminal(660,250,1.05,st,t);
+   const px=lerp(200,470,k), py=lerp(300,250,k);
+   p+=phoneBig(px,py,lerp(-14,8,k),st===2);
+   if(t>=E.tap) p+=arcs(px+100,py-20,(t-E.tap)*2%1,'#FFD43B',0);
+   if(st===2){const r=back(seg(t,E.ok,E.ok+.4)); p+=`<g transform="translate(150,90) scale(${r})"><rect x="-90" y="-36" width="180" height="72" rx="36" fill="#2F9E44"/><text y="12" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="32" fill="#fff">پرداخت شد</text></g>`}
+   $('posSvg').innerHTML=p; }
+ // step4 badges
+ { const ic=[
+   `<svg width="110" height="110" viewBox="0 0 110 110"><path d="M20 40 H80 V70 Q80 95 50 95 Q20 95 20 70Z" fill="#A0714A"/><path d="M80 48 Q100 50 96 66 Q92 78 80 76" stroke="#A0714A" stroke-width="8" fill="none"/><path d="M38 12 q8 10 0 20 M56 10 q8 10 0 20" stroke="#ADB5BD" stroke-width="6" fill="none" stroke-linecap="round"/></svg>`,
+   `<svg width="110" height="110" viewBox="0 0 110 110"><path d="M22 38 H88 L82 98 H28Z" fill="#E64980"/><path d="M38 40 V28 Q55 6 72 28 V40" stroke="#C2255C" stroke-width="7" fill="none"/></svg>`,
+   `<svg width="110" height="110" viewBox="0 0 110 110"><rect x="26" y="30" width="58" height="66" rx="12" fill="#4DABF7"/><rect x="42" y="14" width="26" height="18" rx="6" stroke="#1971C2" stroke-width="6" fill="none"/><circle cx="38" cy="100" r="6" fill="#343A40"/><circle cx="72" cy="100" r="6" fill="#343A40"/><rect x="40" y="46" width="30" height="8" rx="4" fill="#fff" opacity=".7"/></svg>`];
+   const nm=['کافه و رستوران','فروشگاه','هتل و سفر'];
+   for(let i=0;i<3;i++){const k=back(seg(t,E.p4+.2+i*.35,E.p4+.6+i*.35)); const el=$('bd'+i); el.innerHTML=ic[i]+`<b>${nm[i]}</b>`; el.style.transform=`scale(${k})`;} }
+
+ // ---------- characters ----------
+ const blink=(off)=>((t+off)%3.4)<0.12;
+ const N={x:330,y:1085,sc:0.92,skin:'#8D5524',skinDark:'#74441C',shirt:'#FAB005',shirt2:'#F08C00',hairSvg:hairBob+beret,browCol:'#1B1B1B',brow:'happy',mouth:'smile',lookx:0,looky:-6,handL:[-100,400],handR:[100,400]};
+ N.open=amp('h1',t)+amp('h2',t)+amp('h3',t)+amp('h4',t); N.blink=blink(.4);
+ // wave at start of h1
+ if(t>=E.s1&&t<E.s1+1.4){N.handR=[215,-70+Math.sin(t*14)*20]}
+ // pointing up at panel during steps 1/2
+ if(t>=E.s1+1.4&&t<E.s3){const k=ease(seg(t,E.s1+1.4,E.s1+1.8));N.handR=L([100,400],[210,-160],k);N.looky=-14;N.lookx=10}
+ // step 3: raise phone toward POS on counter
+ if(t>=E.s3&&t<E.p4){const k=ease(seg(t,E.s3+.2,E.tap));N.handR=L([100,400],[250,220],k);N.lookx=14;N.looky=8;N.hold=phoneInHand(N.handR,t>=E.ok);N.handR=[N.handR[0],N.handR[1]]; if(t>=E.ok){N.brow='up';N.mouth='o'}}
+ if(t>=E.p4){const k=back(seg(t,E.p4,E.p4+.4));N.handL=L([-100,400],[-230,-170],k);N.handR=L([100,400],[230,-170],k);N.mouth='big';N.extra=sparkles(t);N.y-=20*Math.abs(Math.sin((t-E.p4)*6))*seg(t,E.p4,E.p4+.2)}
+ if(t<E.s1){N.brow='up';N.mouth='o';N.lookx=-8;N.looky=-14}
+ const Bc={x:830,y:1070,sc:0.88,skin:'#F1C27D',skinDark:'#DDA75E',shirt:'#2B8A3E',shirt2:'#237032',hairSvg:hairShortCurl,beard:beardGrey,glasses:true,browCol:'#868E96',brow:'neutral',mouth:'smile',lookx:-12,looky:4,torso:560,apron:apronSvg,handL:[-110,520],handR:[110,520]};
+ Bc.open=amp('b1',t); Bc.blink=blink(1.9);
+ if(t>=E.ok){Bc.brow='happy';Bc.mouth='big';const k=back(seg(t,E.ok+.1,E.ok+.5));Bc.handL=L([-110,520],[-235,200],k);}
+ if(t>=E.p4){Bc.thumbR=true;Bc.handR=L([110,520],[210,80],back(seg(t,E.p4,E.p4+.4)))}
+ $('chars').innerHTML=character(N)+character(Bc);
+ // ---------- front: counter, POS, coffee ----------
+ const st = t<E.tap?0:(t<E.ok?1:2);
+ const cup=ease(seg(t,E.ok+.1,E.ok+.6));
+ $('front').innerHTML=`<rect x="0" y="1290" width="1080" height="36" rx="8" fill="#C08552"/><rect x="0" y="1320" width="1080" height="320" fill="#8B5A3C"/>
+  <g opacity=".25">${[0,1,2,3,4,5,6,7,8].map(i=>`<rect x="${i*130+20}" y="1350" width="100" height="270" rx="10" fill="none" stroke="#5E3E28" stroke-width="6"/>`).join('')}</g>
+  ${posTerminal(600,1215,0.42,st,t)}
+  <g transform="translate(${lerp(1000,780,cup)},1240)" opacity="${cup}"><path d="M-36 -20 H36 V30 Q36 52 0 52 Q-36 52 -36 30Z" fill="#fff"/><path d="M36 -6 Q56 -4 52 14 Q48 26 36 24" stroke="#fff" stroke-width="7" fill="none"/><ellipse cx="0" cy="-20" rx="36" ry="8" fill="#6F4E37"/><path d="M-10 -36 q8 -12 0 -24 M10 -36 q8 -12 0 -24" stroke="#fff" stroke-width="5" fill="none" opacity=".6"/></g>`;
+ // ---------- fx ----------
+ let fx='';
+ if(t>=E.ok){const dt=t-E.ok; const cols=['#FFD43B','#7C3AED','#C4A7FF','#51CF66','#FF6B6B','#4DABF7'];
+  for(let i=0;i<80;i++){const r1=Math.sin(i*12.9898)*43758.5453, r=r1-Math.floor(r1); const r2=Math.sin(i*78.233)*12345.678, q=r2-Math.floor(r2);
+   const ang=-Math.PI/2+(r-.5)*2.4, sp=700+q*900; const x=540+Math.cos(ang)*sp*dt, y=1150+Math.sin(ang)*sp*dt+900*dt*dt; if(y>1950)continue;
+   fx+=`<rect x="${x}" y="${y}" width="18" height="30" rx="4" fill="${cols[i%6]}" transform="rotate(${(i*47+dt*500*(q-.5))} ${x} ${y})" opacity="${1-seg(dt,2.2,3)}"/>`}}
+ $('fx').innerHTML=fx;
+ // ---------- subtitles ----------
+ let sub='';
+ for(const k in C.lines){const c=C.cues[k]; if(t>=c[0]-.1&&t<=c[0]+c[1]+.25){const l=C.lines[k];
+   const k2=seg(t,c[0]-.1,c[0]+.1); sub=`<div class="sb" style="opacity:${k2};transform:translateY(${(1-k2)*20}px)">${l.who?`<div class="who" style="background:${l.col}">${l.who}</div><br>`:''}<div class="tx">${l.t}</div></div>`}}
+ $('subs').innerHTML=sub;
+ // ---------- CTA ----------
+ const ct=ease(seg(t,E.cta,E.cta+.6)); $('cta').style.opacity=ct; $('cta').style.transform=`scale(${1.08-0.08*ct})`;
+ $('ctain').style.transform=`translateY(${(1-ct)*60}px)`; $('subs').style.opacity=1-ct;
+}
+window.render=render;
+</script></body></html>
