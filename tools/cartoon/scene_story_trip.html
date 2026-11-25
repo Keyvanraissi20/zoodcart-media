@@ -1,0 +1,341 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- 2026-11-25 STORY variant (1080x1920, safe zone y 250..1600): F5 "a day in the trip" montage, mode سفر.
+     3 crossfading backgrounds bgAirport/bgMetro/bgBazaar, hotel booking checkout page, metro ticketMachine() (Tap -> Processing -> Approved + ticket),
+     POS close-up, souvenir counter, scene label pills. Character helpers copied from scene_story_cafe.html. -->
+<style>
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Medium.ttf);font-weight:500}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Bold.ttf);font-weight:700}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Black.ttf);font-weight:900}
+svg text{direction:ltr;unicode-bidi:embed}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#1A0F0A;font-family:Vaz,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#panel{position:absolute;left:80px;top:270px;width:920px;height:640px;border-radius:40px;background:#F7F5FF;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;transform-origin:50% 0%}
+#hdr{position:absolute;left:0;right:0;top:0;height:104px;background:#1E1440;display:flex;align-items:center;justify-content:center;gap:20px;direction:rtl}
+.stp{font-size:30px;font-weight:900;color:#1E1440;background:#FFD43B;border-radius:999px;padding:2px 24px}
+.ht{font-size:40px;font-weight:900;color:#fff}
+.pg{position:absolute;left:0;top:104px;width:920px;height:536px;opacity:0}
+.zc{font-size:22px;font-weight:900;color:#fff;background:#7C3AED;border-radius:12px;padding:4px 12px}
+.card{width:500px;height:300px;border-radius:30px;background:linear-gradient(135deg,#9F67FF 0%,#7C3AED 45%,#4C1D95 100%);position:relative;box-shadow:0 20px 50px rgba(124,58,237,.5);direction:ltr;text-align:left;overflow:hidden}
+.card .chip{position:absolute;left:44px;top:108px;width:76px;height:56px;border-radius:12px;background:linear-gradient(135deg,#FFE29A,#D4A537)}
+.card .nm{position:absolute;left:44px;top:32px;font-size:34px;font-weight:900;color:#fff}
+.card .vt{position:absolute;right:40px;top:40px;font-size:22px;font-weight:700;color:#E9DDFF;letter-spacing:3px}
+.card .num{position:absolute;left:44px;bottom:40px;font-size:32px;font-weight:700;color:#fff;letter-spacing:4px}
+.card .vs{position:absolute;right:40px;bottom:32px;font-size:44px;font-weight:900;font-style:italic;color:#fff}
+.card .shine{position:absolute;left:-60%;top:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}
+.url{position:absolute;left:60px;right:60px;top:26px;height:60px;border-radius:30px;background:#E6E1F5;display:flex;align-items:center;justify-content:center;gap:12px;font-size:32px;font-weight:700;color:#3B2667;direction:ltr}
+#subs{position:absolute;left:50px;right:50px;top:1335px;direction:rtl;text-align:center}
+.sb{display:inline-block;background:rgba(26,15,10,.86);border-radius:30px;padding:20px 34px 24px;border:3px solid rgba(255,212,59,.4);max-width:980px}
+.who{display:inline-block;font-size:28px;font-weight:900;color:#fff;border-radius:999px;padding:4px 22px;margin-bottom:6px}
+.tx{font-size:44px;font-weight:700;color:#fff;line-height:1.5}
+#cta{background:linear-gradient(180deg,#0B0820,#1A1035);direction:rtl;text-align:center;opacity:0}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);background:#7C3AED}
+.pill{display:inline-block;background:#7C3AED;color:#fff;font-weight:700;border-radius:999px}
+.opill{display:inline-block;border:5px solid #C4A7FF;color:#C4A7FF;font-weight:700;border-radius:999px}
+.badge{width:250px;height:300px;border-radius:30px;background:#fff;box-shadow:0 10px 30px rgba(30,20,64,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;direction:rtl}
+.badge b{font-size:36px;font-weight:900;color:#1E1440}
+</style></head>
+<body><div id="stage">
+<svg id="room" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="chars" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="front" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="panel">
+  <div id="hdr"><span class="stp" id="stp"></span><span class="ht" id="ht"></span></div>
+  <div class="pg" id="pgHook" style="background:linear-gradient(180deg,#E7F5FF,#C5E4FF)"><svg id="hookSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pg1" style="background:#F7F5FF"><svg id="bookSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pg2" style="background:linear-gradient(180deg,#EDF2FF,#C5D3F5)"><svg id="metroSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pg3" style="background:linear-gradient(180deg,#FFF4E0,#F5D9A8)"><svg id="posSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pg4" style="background:#F3F0FF;display:flex;align-items:center;justify-content:center;gap:34px">
+    <div class="badge" id="bd0"></div><div class="badge" id="bd1"></div><div class="badge" id="bd2"></div>
+  </div>
+</div>
+<svg id="fx" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="subs"></div>
+<div id="cta" class="layer">
+  <div class="glow" style="left:-250px;top:250px;width:800px;height:800px;opacity:.45"></div>
+  <div class="glow" style="left:550px;top:1050px;width:750px;height:750px;opacity:.35"></div>
+  <div style="position:absolute;left:0;right:0;top:330px" id="ctain">
+    <div class="pill" style="font-size:52px;padding:16px 56px">آنلاین، حضوری، توی سفر</div>
+    <div class="card" style="margin:70px auto 0;transform:rotate(-6deg)"><div class="nm">zoodcart</div><div class="vt">VIRTUAL CARD</div><div class="chip"></div><div class="num">•••• 7731</div><div class="vs">VISA</div></div>
+    <div style="font-size:150px;font-weight:900;color:#fff;direction:ltr;margin-top:60px;line-height:1.1">zoodcart.ir</div>
+    <div style="font-size:54px;color:#BEBACD;font-weight:500;margin-top:14px">ثبت سفارش آنلاین</div>
+    <div style="font-size:42px;color:#C4A7FF;font-weight:700;margin-top:22px">احراز هویت امن + فاکتور رسمی</div>
+    <div class="opill" style="font-size:50px;padding:12px 70px;margin-top:40px">لینک در بیو</div>
+  </div>
+</div>
+</div>
+<script>
+const C = window.CUES; const AMP = window.AMPS; const FPS=30;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const lerp=(a,b,x)=>a+(b-a)*x;
+const L=(p,q,x)=>[lerp(p[0],q[0],x),lerp(p[1],q[1],x)];
+function amp(key,t){const c=C.cues[key]; if(!c) return 0; const s=c[0],d=c[1]; if(t<s||t>s+d) return 0; const a=AMP[key]; const i=Math.floor((t-s)*FPS); return a[Math.min(i,a.length-1)]||0}
+const $=id=>document.getElementById(id);
+const E=C.ev;
+const T=(x,y,s,f,c,w,a)=>`<text x="${x}" y="${y}" ${a?`text-anchor="${a}"`:''} font-family="Vaz" font-weight="${w||900}" font-size="${s}" fill="${c||'#fff'}">${f}</text>`;
+
+// ---------- 3 travel backgrounds (reusable): bgAirport, bgMetro, bgBazaar ----------
+function bgAirport(){
+ let s=`<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#74C0FC"/><stop offset="1" stop-color="#D0EBFF"/></linearGradient></defs>
+ <rect width="1080" height="1920" fill="#DEE2E6"/><rect y="0" width="1080" height="1250" fill="#CED4DA"/>
+ <rect x="0" y="920" width="1080" height="340" fill="url(#sky)"/>
+ <rect x="0" y="1150" width="1080" height="110" fill="#ADB5BD"/><rect x="0" y="1200" width="1080" height="8" fill="#FFF" opacity=".6"/>`;
+ for(let x=0;x<=1080;x+=180) s+=`<rect x="${x-8}" y="900" width="16" height="360" fill="#495057"/>`;
+ s+=`<rect x="0" y="900" width="1080" height="22" fill="#495057"/><rect x="0" y="1250" width="1080" height="16" fill="#495057"/>`;
+ // departures board
+ s+=`<g transform="translate(700,940)"><rect width="340" height="190" rx="14" fill="#212529"/>${T(20,40,24,'DEPARTURES','#FFD43B')}`;
+ const r=[['ZC 101','08:40','#51CF66'],['ZC 205','09:15','#51CF66'],['ZC 318','10:05','#FFD43B']];
+ r.forEach((q,i)=>{s+=T(20,82+i*36,22,q[0],'#fff',700)+T(170,82+i*36,22,q[1],'#fff',700)+`<circle cx="300" cy="${75+i*36}" r="9" fill="${q[2]}"/>`});
+ s+=`</g><rect y="1266" width="1080" height="660" fill="#E9ECEF"/>`;
+ for(let x=0;x<1080;x+=120) s+=`<path d="M${x} 1266 L${x-200} 1920" stroke="#DEE2E6" stroke-width="4"/>`;
+ return s;
+}
+function plane(x,y,sc){return `<g transform="translate(${x},${y}) scale(${sc})"><path d="M-140 0 Q-140 -22 -100 -22 L120 -22 Q160 -22 170 0 Q160 18 120 18 L-100 18 Q-140 18 -140 0Z" fill="#fff"/><path d="M-20 0 L40 70 L70 70 L40 0Z" fill="#E9ECEF"/><path d="M-110 -20 L-140 -80 L-115 -80 L-70 -20Z" fill="#7C3AED"/><g fill="#74C0FC">${[0,1,2,3,4,5,6].map(i=>`<circle cx="${-60+i*28}" cy="-6" r="5"/>`).join('')}</g></g>`}
+function bgMetro(){
+ let s=`<rect width="1080" height="1920" fill="#F1F3F5"/>`;
+ for(let r=0;r<34;r++)for(let c=0;c<14;c++) s+=`<rect x="${c*80+2}" y="${r*40+2}" width="76" height="36" rx="4" fill="#fff" stroke="#E9ECEF" stroke-width="2"/>`;
+ s+=`<rect x="0" y="1150" width="1080" height="40" fill="#1971C2"/><rect x="0" y="1196" width="1080" height="10" fill="#FFD43B"/>`;
+ s+=`<g transform="translate(150,1010)"><circle r="62" fill="#1971C2"/><circle r="50" fill="#fff"/>${T(0,24,70,'M','#1971C2',900,'middle')}</g>`;
+ s+=`<g transform="translate(486,935)"><rect width="290" height="90" rx="16" fill="#212529"/>${T(24,58,40,'Metro','#fff')}${T(266,58,36,'Line 2','#FFD43B',700,'end')}</g>`;
+ s+=`<rect y="1440" width="1080" height="480" fill="#868E96"/><rect y="1440" width="1080" height="24" fill="#FFD43B"/>`;
+ return s;
+}
+function bgBazaar(){
+ let s=`<defs><radialGradient id="lg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE066" stop-opacity=".5"/><stop offset="1" stop-color="#FFE066" stop-opacity="0"/></radialGradient></defs>
+ <rect width="1080" height="1920" fill="#E8A35A"/><rect y="0" width="1080" height="930" fill="#C9773A"/>`;
+ // arches
+ for(let i=0;i<3;i++){const x=40+i*350; s+=`<path d="M${x} 1290 V1010 Q${x+150} 880 ${x+300} 1010 V1290Z" fill="#D9894A"/>`}
+ // shelves with souvenirs (plates, vases)
+ const cols=['#1C7ED6','#20C997','#E64980','#FAB005','#7048E8','#F76707'];
+ for(let row=0;row<2;row++){const y=1090+row*110; s+=`<rect x="60" y="${y}" width="960" height="14" rx="6" fill="#8B5A2B"/>`;
+  for(let i=0;i<9;i++){const x=110+i*105, c=cols[(i+row*2)%6];
+   if((i+row)%2) s+=`<path d="M${x-22} ${y} Q${x-30} ${y-40} ${x-10} ${y-58} L${x-10} ${y-72} L${x+10} ${y-72} L${x+10} ${y-58} Q${x+30} ${y-40} ${x+22} ${y}Z" fill="${c}"/><path d="M${x-20} ${y-30} H${x+20}" stroke="#fff" stroke-width="4" opacity=".7"/>`;
+   else s+=`<circle cx="${x}" cy="${y-40}" r="38" fill="${c}"/><circle cx="${x}" cy="${y-40}" r="24" fill="none" stroke="#fff" stroke-width="5" opacity=".75"/><circle cx="${x}" cy="${y-40}" r="8" fill="#fff" opacity=".75"/>`;}}
+ // striped awning
+ s+=`<g transform="translate(0,912)">`; for(let i=0;i<12;i++) s+=`<path d="M${i*90} 0 H${i*90+90} V40 Q${i*90+45} 70 ${i*90} 40Z" fill="${i%2?'#FFF3BF':'#E03131'}"/>`; s+=`</g>`;
+ // lanterns
+ for(const x of [180,540,900]) s+=`<circle cx="${x}" cy="1010" r="120" fill="url(#lg)"/><path d="M${x} 960 V980" stroke="#5C3A1A" stroke-width="4"/><path d="M${x-22} 985 Q${x} 975 ${x+22} 985 L${x+28} 1025 Q${x} 1045 ${x-28} 1025Z" fill="#FAB005"/><path d="M${x-14} 992 L${x-16} 1026 M${x} 990 V1032 M${x+14} 992 L${x+16} 1026" stroke="#E67700" stroke-width="3"/>`;
+ s+=`<g transform="translate(540,960)"><rect x="-170" y="-28" width="340" height="64" rx="32" fill="#5C3A1A" stroke="#FFD43B" stroke-width="4"/>${T(0,16,34,'Souvenir Corner','#FFD43B',900,'middle')}</g>`;
+ s+=`<rect y="1640" width="1080" height="280" fill="#5C3A1A"/>`;
+ return s;
+}
+$('room').innerHTML=`<g id="bgA">${bgAirport()}<g id="planeG"></g></g><g id="bgM" opacity="0">${bgMetro()}</g><g id="bgB" opacity="0">${bgBazaar()}</g>`;
+// ---------- character (same engine as scene.html) ----------
+function arm(sh,hand,col,skin,thumb,point){
+ let s=`<path d="M${sh[0]} ${sh[1]} Q ${(sh[0]+hand[0])/2+(sh[0]<0?-40:40)} ${(sh[1]+hand[1])/2+30} ${hand[0]} ${hand[1]}" stroke="${col}" stroke-width="58" fill="none" stroke-linecap="round"/>`;
+ s+=`<circle cx="${hand[0]}" cy="${hand[1]}" r="32" fill="${skin}"/>`;
+ if(thumb) s+=`<rect x="${hand[0]-9}" y="${hand[1]-62}" width="18" height="40" rx="9" fill="${skin}"/>`;
+ if(point) s+=`<rect x="${hand[0]-70}" y="${hand[1]-9}" width="50" height="18" rx="9" fill="${skin}"/>`;
+ return s;
+}
+function character(o){
+ const sk=o.skin, dk=o.skinDark;
+ let s=`<g transform="translate(${o.x},${o.y}) scale(${o.sc||1}) rotate(${o.rot||0})">`+(o.hairBack||'');
+ const tl=o.torso||340;
+ const back = o.handL[1]>200 && o.handR[1]>200;
+ const arms = arm([-120,175],o.handL,o.shirt2,sk,false,o.pointL)+arm([120,175],o.handR,o.shirt2,sk,o.thumbR,false)+(o.hold||'');
+ if(back) s+=arms;
+ s+=`<path d="M -160 ${tl} Q -165 160 -70 130 L 70 130 Q 165 160 160 ${tl} Z" fill="${o.shirt}"/>`;
+ s+=`<path d="M -70 132 Q 0 210 70 132" fill="none" stroke="${o.shirt2}" stroke-width="16" stroke-linecap="round"/>`;
+ s+=(o.apron||'');
+ s+=`<rect x="-30" y="78" width="60" height="62" rx="20" fill="${dk}"/>`;
+ if(!back) s+=arms;
+ s+=`<circle cx="-100" cy="12" r="22" fill="${dk}"/><circle cx="100" cy="12" r="22" fill="${dk}"/>`;
+ s+=`<ellipse cx="0" cy="0" rx="104" ry="108" fill="${sk}"/>`;
+ s+=o.hairSvg;
+ const ey=o.blink?2:24, lx=o.lookx||0, ly=o.looky||0;
+ for(const ex of [-38,38]){
+   s+=`<ellipse cx="${ex}" cy="2" rx="19" ry="${ey}" fill="#fff"/>`;
+   if(!o.blink) s+=`<circle cx="${ex+lx}" cy="${4+ly}" r="11" fill="#1B1430"/><circle cx="${ex+lx+4}" cy="${ly-1}" r="3.5" fill="#fff"/>`;
+ }
+ if(o.glasses) s+=`<g fill="none" stroke="#1B1430" stroke-width="6"><circle cx="-38" cy="2" r="30"/><circle cx="38" cy="2" r="30"/><path d="M-8 -2 L8 -2"/></g>`;
+ const B={neutral:[-40,-40],angry:[-26,-46],sad:[-52,-34],up:[-60,-56],happy:[-48,-44]}[o.brow];
+ s+=`<path d="M -60 ${B[1]} L -18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/><path d="M 60 ${B[1]} L 18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/>`;
+ s+=`<circle cx="-62" cy="40" r="16" fill="#FF8787" opacity=".35"/><circle cx="62" cy="40" r="16" fill="#FF8787" opacity=".35"/>`;
+ if(o.beard) s+=o.beard;
+ const op=o.open||0, m=o.mouth;
+ if(op>0.06){
+   const h=10+44*Math.min(1,op*1.4);
+   s+=`<path d="M -34 48 Q 0 ${48+h*1.5} 34 48 Z" fill="#5C1A1A"/><path d="M -18 ${48+h*0.9} Q 0 ${48+h*1.3} 18 ${48+h*0.9} Q 0 ${48+h*0.6} -18 ${48+h*0.9}Z" fill="#FF6B6B"/>`;
+ } else if(m==='smile') s+=`<path d="M -30 46 Q 0 74 30 46" stroke="#5C1A1A" stroke-width="9" fill="none" stroke-linecap="round"/>`;
+ else if(m==='big') s+=`<path d="M -40 42 Q 0 108 40 42 Z" fill="#5C1A1A"/><path d="M -20 74 Q 0 92 20 74 Q 0 66 -20 74Z" fill="#FF6B6B"/>`;
+ else if(m==='o') s+=`<ellipse cx="0" cy="58" rx="14" ry="18" fill="#5C1A1A"/>`;
+ else s+=`<path d="M -22 56 L 22 56" stroke="#5C1A1A" stroke-width="9" stroke-linecap="round"/>`;
+ s+=(o.extra||'');
+ return s+'</g>';
+}
+// hair styles
+const hairBob=`<path d="M -116 40 Q -130 -130 0 -128 Q 130 -130 116 40 L 96 40 Q 96 -40 60 -60 Q 0 -40 -50 -70 Q -96 -40 -96 40 Z" fill="#1B1B1B"/>`;
+const beret=`<ellipse cx="-10" cy="-112" rx="112" ry="38" fill="#E8590C" transform="rotate(-10 0 -112)"/><circle cx="-14" cy="-150" r="10" fill="#E8590C"/>`;
+const hairShortCurl=(()=>{let s='';const pts=[[-88,-56],[-62,-92],[-24,-112],[18,-114],[56,-98],[86,-64]];for(const p of pts)s+=`<circle cx="${p[0]}" cy="${p[1]}" r="34" fill="#C9C9C9"/>`;return s})();
+const beardGrey=`<path d="M -96 20 Q -90 120 0 128 Q 90 120 96 20 Q 70 80 0 84 Q -70 80 -96 20Z" fill="#C9C9C9"/>`;
+const apronSvg=`<path d="M -80 170 L 80 170 L 96 560 L -96 560 Z" fill="#F1F3F5"/><path d="M -80 172 L -120 140 M 80 172 L 120 140" stroke="#F1F3F5" stroke-width="10"/><rect x="-40" y="240" width="80" height="46" rx="8" fill="#DEE2E6"/>`;
+function phoneInHand(h,glow){return `<g transform="translate(${h[0]},${h[1]-40}) rotate(-12)"><rect x="-34" y="-62" width="68" height="124" rx="14" fill="#1E1E2E"/><rect x="-28" y="-54" width="56" height="106" rx="9" fill="${glow?'#7C3AED':'#4C1D95'}"/><rect x="-22" y="-20" width="44" height="28" rx="5" fill="#C4A7FF"/></g><circle cx="${h[0]}" cy="${h[1]+10}" r="30" fill="#8D5524"/>`}
+function sparkles(t){let s='';const P=[[-150,-120],[150,-140],[-170,40],[170,20],[0,-190]];P.forEach((p,i)=>{const k=0.6+0.4*Math.sin(t*8+i*1.7);s+=`<path transform="translate(${p[0]},${p[1]}) scale(${k})" d="M0 -26 Q 4 -4 26 0 Q 4 4 0 26 Q -4 4 -26 0 Q -4 -4 0 -26Z" fill="#FFD43B"/>`});return s}
+function arcs(x,y,k,col,rot){let s=`<g transform="translate(${x},${y}) rotate(${rot||0})" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round">`;for(let i=0;i<3;i++){const r=26+i*24;const o=clamp(k*3-i,0,1);s+=`<path d="M ${r*0.5} ${-r*0.87} A ${r} ${r} 0 0 1 ${r*0.5} ${r*0.87}" opacity="${o}"/>`}return s+'</g>'}
+
+// ---------- POS terminal (reusable): state 0 tap, 1 processing, 2 approved ----------
+function posTerminal(x,y,sc,state,t){
+ let scr='';
+ if(state===0) scr=`<text x="0" y="-40" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#fff">Tap</text>`+arcs(-14,10,(t*1.5)%1,'#C4A7FF',0);
+ else if(state===1) scr=`<g transform="translate(0,-14) rotate(${t*500})"><circle r="30" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><path d="M0 -30 A30 30 0 0 1 30 0" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></g><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="24" fill="#fff">Processing</text>`;
+ else scr=`<circle cx="0" cy="-14" r="40" fill="#2F9E44"/><path d="M-18 -14 L-5 0 L20 -28" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="28" fill="#8CE99A">Approved</text>`;
+ let keys='';for(let r=0;r<3;r++)for(let c=0;c<3;c++)keys+=`<rect x="${-66+c*48}" y="${130+r*36}" width="40" height="28" rx="7" fill="#495057"/>`;
+ return `<g transform="translate(${x},${y}) scale(${sc})"><rect x="-100" y="-130" width="200" height="380" rx="34" fill="#343A40"/><rect x="-82" y="-110" width="164" height="210" rx="16" fill="${state===2?'#0B3D1E':'#1E1440'}"/>${scr}${keys}</g>`;
+}
+function phoneBig(x,y,rot,lit){return `<g transform="translate(${x},${y}) rotate(${rot})"><rect x="-90" y="-170" width="180" height="340" rx="32" fill="#1E1E2E"/><rect x="-78" y="-156" width="156" height="312" rx="24" fill="#0F0B1E"/>
+ <rect x="-30" y="-150" width="60" height="14" rx="7" fill="#1E1E2E"/>
+ <g transform="translate(0,-40)"><rect x="-66" y="-42" width="132" height="84" rx="12" fill="#7C3AED"/><text x="-52" y="-12" font-family="Vaz" font-weight="900" font-size="16" fill="#fff">zoodcart</text><text x="50" y="30" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="20" fill="#fff">VISA</text></g>
+ <text x="0" y="70" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="18" fill="${lit?'#8CE99A':'#C4A7FF'}">${lit?'Done':'Hold near reader'}</text></g>`}
+
+
+// ---------- new reusable bits (2026-11-25 trip story) ----------
+const capBlue=`<path d="M -104 -18 Q -112 40 -98 46 L -90 -6Z M 104 -18 Q 112 40 98 46 L 90 -6Z" fill="#1B1B1B"/><path d="M -110 -26 Q -114 -140 0 -140 Q 114 -140 110 -26 Q 0 -50 -110 -26Z" fill="#364FC7"/><path d="M 30 -36 Q 140 -52 178 -24 Q 130 -12 30 -20Z" fill="#2B3FA8"/><circle cx="0" cy="-138" r="10" fill="#2B3FA8"/>`;
+const backpackStraps=`<path d="M -78 140 Q -96 260 -86 340 M 78 140 Q 96 260 86 340" stroke="#212529" stroke-width="22" fill="none" stroke-linecap="round"/>`;
+const hairBunGrey=`<path d="M -112 24 Q -124 -128 0 -124 Q 124 -128 112 24 Q 104 -56 0 -66 Q -104 -56 -112 24Z" fill="#868E96"/><circle cx="0" cy="-140" r="46" fill="#868E96"/><circle cx="-102" cy="40" r="9" fill="#FCC419"/><circle cx="102" cy="40" r="9" fill="#FCC419"/>`;
+const scarfSvg=`<path d="M -74 134 Q 0 190 74 134 L 64 176 Q 0 220 -64 176Z" fill="#FCC419"/>`;
+function phoneInHandS(h,glow,skin){return `<g transform="translate(${h[0]},${h[1]-40}) rotate(-12)"><rect x="-34" y="-62" width="68" height="124" rx="14" fill="#1E1E2E"/><rect x="-28" y="-54" width="56" height="106" rx="9" fill="${glow?'#7C3AED':'#4C1D95'}"/><rect x="-22" y="-20" width="44" height="28" rx="5" fill="#C4A7FF"/></g><circle cx="${h[0]}" cy="${h[1]+10}" r="30" fill="${skin}"/>`}
+// metro ticket machine (reusable): state 0 Tap, 1 Processing, 2 Approved; tk 0..1 ticket slides out
+function ticketMachine(x,y,sc,state,t,tk){
+ let scr;
+ if(state===0) scr=T(0,-60,26,'Tap card or phone','#fff',700,'middle')+arcs(-12,0,(t*1.5)%1,'#C4A7FF',0);
+ else if(state===1) scr=`<g transform="translate(0,-20) rotate(${t*500})"><circle r="30" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><path d="M0 -30 A30 30 0 0 1 30 0" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></g>`+T(0,50,24,'Processing','#fff',700,'middle');
+ else scr=`<circle cx="0" cy="-20" r="40" fill="#2F9E44"/><path d="M-18 -20 L-5 -6 L20 -34" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`+T(0,50,28,'Approved','#8CE99A',900,'middle');
+ return `<g transform="translate(${x},${y}) scale(${sc})">
+  <rect x="-130" y="-250" width="260" height="560" rx="30" fill="#1971C2"/><rect x="-130" y="-250" width="260" height="70" rx="30" fill="#1864AB"/>${T(0,-202,30,'TICKETS','#fff',900,'middle')}
+  <rect x="-105" y="-160" width="210" height="190" rx="16" fill="${state===2?'#0B3D1E':'#1E1440'}"/><g transform="translate(0,-60)">${scr}</g>
+  <rect x="-60" y="60" width="120" height="70" rx="14" fill="#E9ECEF"/>${arcs(-14,95,1,'#1971C2',0)}
+  <rect x="-70" y="180" width="140" height="18" rx="9" fill="#0B2A4A"/>
+  <g transform="translate(0,${189+tk*60})" opacity="${tk>0?1:0}"><rect x="-55" y="0" width="110" height="${tk*70}" fill="#FFF3BF"/></g>
+  ${tk>0.6?`<g transform="translate(0,${189+60+40})">${T(0,8,20,'TICKET','#E67700',900,'middle')}</g>`:''}
+ </g>`;
+}
+
+function render(t){
+ // ---------- background crossfade ----------
+ const fA=1-seg(t,E.s2-.2,E.s2+.2), fM=seg(t,E.s2-.2,E.s2+.2)*(1-seg(t,E.s3-.2,E.s3+.2)), fB=seg(t,E.s3-.2,E.s3+.2);
+ $('bgA').setAttribute('opacity',fA); $('bgM').setAttribute('opacity',fM); $('bgB').setAttribute('opacity',fB);
+ $('planeG').innerHTML=plane(-200+((t*90)%1500),1105,0.8);
+ // ---------- panel pages ----------
+ const pages=[['pgHook',0,E.s1],['pg1',E.s1,E.s2],['pg2',E.s2,E.s3],['pg3',E.s3,E.p4],['pg4',E.p4,99]];
+ for(const [id,a,b] of pages){const o=seg(t,a,a+.3)*(1-seg(t,b,b+.3));$(id).style.opacity=o;$(id).style.transform=`translateX(${(1-seg(t,a,a+.3))*-60}px)`}
+ let stp,ht;
+ if(t<E.s1){stp='۱ روز';ht='یه روز سفر با زودکارت'}
+ else if(t<E.s2){stp='صحنه ۱';ht='رزرو آنلاین هتل'}
+ else if(t<E.s3){stp='صحنه ۲';ht='بلیط مترو با گوشی'}
+ else if(t<E.p4){stp='صحنه ۳';ht='خرید سوغاتی، حضوری'}
+ else {stp='یه کارت';ht='آنلاین، حضوری، توی سفر'}
+ $('stp').textContent=stp; $('ht').textContent=ht;
+ const pin=back(seg(t,0,0.55)); $('panel').style.transform=`scale(${0.6+0.4*pin})`; $('panel').style.opacity=seg(t,0,.2);
+ // hook: route map with plane + 3 pins
+ { let h='';
+   const P=[[150,400],[460,190],[770,380]], ic=['hotel','metro','gift'];
+   h+=`<path d="M150 400 Q300 120 460 190 T770 380" stroke="#1971C2" stroke-width="8" stroke-dasharray="4 22" stroke-linecap="round" fill="none"/>`;
+   const nm=['هتل','مترو','سوغاتی'];
+   P.forEach((p,i)=>{const k=back(seg(t,0.35+i*.3,0.75+i*.3)); h+=`<g transform="translate(${p[0]},${p[1]}) scale(${k})"><path d="M0 0 Q-60 -70 -60 -110 A60 60 0 1 1 60 -110 Q60 -70 0 0Z" fill="${['#7C3AED','#1971C2','#E03131'][i]}"/><circle cx="0" cy="-112" r="36" fill="#fff"/>${pinIcon(ic[i])}</g>`+(k>0.05?`<text x="${p[0]}" y="${p[1]+50}" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#1E1440" style="direction:rtl">${nm[i]}</text>`:'')});
+   const pk=seg(t,0.2,Math.max(1.5,E.s1-.2)); const bz=(a,b,c,x)=>(1-x)*(1-x)*a+2*(1-x)*x*b+x*x*c;
+   const q=pk*2, x1=q<1?bz(150,300,460,q):bz(460,620,770,q-1), y1=q<1?bz(400,120,190,q):bz(190,260,380,q-1);
+   h+=`<g transform="translate(${x1},${y1-40}) scale(.45) rotate(${q<1?-15:15})">${plane(0,0,1)}</g>`;
+   $('hookSvg').innerHTML=h; }
+ // page1: hotel booking checkout
+ { const pressed=t>=E.pay, ok=back(seg(t,E.pay+.5,E.pay+.9)), fill=seg(t,E.s1+.5,E.s1+1.2);
+   let b=`<rect x="60" y="22" width="800" height="60" rx="30" fill="#E6E1F5"/><rect x="290" y="38" width="16" height="16" rx="3" fill="#2B8A3E"/>${T(320,64,30,'hotel-booking.com','#3B2667',700)}`;
+   b+=`<rect x="60" y="110" width="330" height="230" rx="22" fill="#D0EBFF"/><rect x="100" y="230" width="250" height="70" rx="14" fill="#fff"/><rect x="100" y="200" width="90" height="40" rx="12" fill="#FFC9C9"/><rect x="260" y="200" width="90" height="40" rx="12" fill="#FFC9C9"/><rect x="88" y="290" width="274" height="20" rx="6" fill="#845EF7"/><circle cx="330" cy="150" r="22" fill="#FFD43B"/>`;
+   b+=T(430,150,38,'Hotel Booking','#1E1440')+T(430,196,28,'2 nights · city center','#495057',700);
+   b+=`<rect x="430" y="226" width="430" height="94" rx="18" fill="#fff" stroke="#C4A7FF" stroke-width="4"/>`;
+   b+=`<g opacity="${fill}"><rect x="446" y="242" width="100" height="62" rx="10" fill="#7C3AED"/>${T(456,266,14,'zoodcart')}${T(538,296,16,'VISA','#fff',900,'end')}${T(566,286,30,'•••• 7731','#1E1440',700)}</g>`;
+   if(!pressed) b+=`<circle cx="${560+Math.sin(t*5)*4}" cy="${430+Math.sin(t*5)*6}" r="26" fill="#FFD43B" opacity=".9"/>`;
+   const bs=(t>=E.pay&&t<E.pay+.15)?0.95:1;
+   b+=`<g transform="translate(460,420) scale(${bs})"><rect x="-200" y="-46" width="400" height="92" rx="46" fill="${pressed?'#2F9E44':'#7C3AED'}"/>${T(0,14,36,pressed?'Booking confirmed':'Pay &amp; Book','#fff',900,'middle')}</g>`;
+   if(t>=E.pay&&t<E.pay+.5){const r=(t-E.pay)/.5; b+=`<circle cx="460" cy="420" r="${50+r*140}" fill="none" stroke="#7C3AED" stroke-width="6" opacity="${1-r}"/>`}
+   b+=`<g transform="translate(790,420) scale(${ok})"><circle r="40" fill="#2F9E44"/><path d="M-18 0 L-5 13 L20 -14" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+   $('bookSvg').innerHTML=b; }
+ // page2: metro machine close-up
+ { const st=t<E.tap2?0:(t<E.ok2?1:2), k=ease(seg(t,E.s2+.3,E.tap2)), tk=ease(seg(t,E.ok2+.2,E.ok2+.9));
+   let m=ticketMachine(640,290,0.82,st,t,tk);
+   const px=lerp(180,440,k), py=lerp(330,320,k);
+   m+=phoneBig(px,py,lerp(-14,6,k),st===2);
+   if(t>=E.tap2) m+=arcs(px+100,py-20,(t-E.tap2)*2%1,'#FFD43B',0);
+   if(st===2){const r=back(seg(t,E.ok2,E.ok2+.4)); m+=`<g transform="translate(180,90) scale(${r})"><rect x="-110" y="-36" width="220" height="72" rx="36" fill="#2F9E44"/><text y="12" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="32" fill="#fff" style="direction:rtl">بلیط گرفتم!</text></g>`}
+   $('metroSvg').innerHTML=m; }
+ // page3: POS close-up + souvenir
+ { const st=t<E.tap3?0:(t<E.ok3?1:2), k=ease(seg(t,E.s3+.3,E.tap3));
+   let p=posTerminal(660,250,1.05,st,t);
+   const px=lerp(200,470,k), py=lerp(300,250,k);
+   p+=phoneBig(px,py,lerp(-14,8,k),st===2);
+   if(t>=E.tap3) p+=arcs(px+100,py-20,(t-E.tap3)*2%1,'#FFD43B',0);
+   if(st===2){const r=back(seg(t,E.ok3,E.ok3+.4)); p+=`<g transform="translate(150,90) scale(${r})"><rect x="-90" y="-36" width="180" height="72" rx="36" fill="#2F9E44"/><text y="12" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="32" fill="#fff" style="direction:rtl">پرداخت شد</text></g>`}
+   $('posSvg').innerHTML=p; }
+ // page4 badges
+ { const ic=[
+   `<svg width="110" height="110" viewBox="0 0 110 110"><rect x="12" y="20" width="86" height="58" rx="8" fill="#343A40"/><rect x="18" y="26" width="74" height="46" rx="4" fill="#7C3AED"/><rect x="4" y="80" width="102" height="10" rx="5" fill="#495057"/><rect x="30" y="40" width="50" height="16" rx="4" fill="#C4A7FF"/></svg>`,
+   `<svg width="110" height="110" viewBox="0 0 110 110"><rect x="50" y="14" width="44" height="84" rx="10" fill="#343A40"/><rect x="56" y="22" width="32" height="56" rx="5" fill="#2F9E44"/><rect x="14" y="40" width="34" height="56" rx="8" fill="#7C3AED"/><path d="M28 30 a12 12 0 0 1 0 -18 M20 34 a22 22 0 0 1 0 -26" stroke="#FFD43B" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`,
+   `<svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="52" fill="#74C0FC"/>${plane(58,50,0.3)}<rect x="34" y="72" width="42" height="30" rx="6" fill="#E03131"/><rect x="46" y="64" width="18" height="10" rx="3" fill="none" stroke="#C92A2A" stroke-width="4"/></svg>`];
+   const nm=['آنلاین','حضوری','توی سفر'];
+   for(let i=0;i<3;i++){const k=back(seg(t,E.p4+.2+i*.35,E.p4+.6+i*.35)); const el=$('bd'+i); el.innerHTML=ic[i]+`<b>${nm[i]}</b>`; el.style.transform=`scale(${k})`;} }
+
+ // ---------- characters ----------
+ const blink=(off)=>((t+off)%3.4)<0.12;
+ const SK='#E0AC69';
+ const A={x:330,y:1085,sc:0.92,skin:SK,skinDark:'#C68B4E',shirt:'#1098AD',shirt2:'#0C8599',hairSvg:capBlue,apron:backpackStraps,browCol:'#1B1B1B',brow:'happy',mouth:'smile',lookx:0,looky:-6,handL:[-100,400],handR:[100,400]};
+ A.open=amp('n1',t)*0+amp('a1',t)+amp('a2',t)+amp('a3',t)+amp('a4',t); A.blink=blink(.4);
+ if(t<E.s1){A.brow='up';A.mouth='smile';A.lookx=-8;A.looky=-14; if(t>0.6&&t<E.s1){A.handR=[215,-70+Math.sin(t*14)*20]}}
+ // scene 1: looks at phone in hand, taps
+ if(t>=E.s1&&t<E.s2){const k=ease(seg(t,E.s1,E.s1+.4)); A.handR=L([100,400],[110,250],k); A.looky=14;A.lookx=8; A.hold=phoneInHandS(A.handR,t>=E.pay,SK);
+   A.handL=L([-100,400],[40,240],k); if(t>=E.pay+.3){A.brow='up';A.mouth='big'; const k2=back(seg(t,E.pay+.3,E.pay+.7)); A.handL=L([40,240],[-230,-150],k2)}}
+ // scene 2: tap machine on the right
+ if(t>=E.s2&&t<E.s3){A.x=380; const k=ease(seg(t,E.s2+.2,E.tap2)); A.handR=L([100,400],[400,150],k); A.lookx=14; A.looky=4; A.hold=phoneInHandS(A.handR,t>=E.ok2,SK); if(t>=E.ok2){A.brow='up';A.mouth='o'}}
+ // scene 3: tap POS on counter
+ if(t>=E.s3&&t<E.p4){const k=ease(seg(t,E.s3+.2,E.tap3)); A.handR=L([100,400],[250,220],k); A.lookx=14; A.looky=8; A.hold=phoneInHandS(A.handR,t>=E.ok3,SK); if(t>=E.ok3){A.brow='happy';A.mouth='big'}}
+ if(t>=E.p4){const k=back(seg(t,E.p4,E.p4+.4)); A.handL=L([-100,400],[-230,-170],k); A.handR=L([100,400],[230,-170],k); A.mouth='big'; A.extra=sparkles(t); A.y-=20*Math.abs(Math.sin((t-E.p4)*6))*seg(t,E.p4,E.p4+.2)}
+ let ch=character(A);
+ if(t>=E.s3-.2){const sk={x:830,y:1070,sc:0.88,skin:'#C68642',skinDark:'#A86B32',shirt:'#C2255C',shirt2:'#A61E4D',hairSvg:hairBunGrey,apron:scarfSvg,glasses:true,browCol:'#868E96',brow:'neutral',mouth:'smile',lookx:-12,looky:4,torso:560,handL:[-110,520],handR:[110,520]};
+   sk.open=amp('s1',t); sk.blink=blink(1.9);
+   if(t>=E.ok3){sk.brow='happy';sk.mouth='big';const k=back(seg(t,E.ok3+.1,E.ok3+.5));sk.handL=L([-110,520],[-235,200],k);}
+   if(t>=E.p4){sk.thumbR=true;sk.handR=L([110,520],[210,80],back(seg(t,E.p4,E.p4+.4)))}
+   ch=`<g opacity="${fB}">${character(sk)}</g>`+ch;}
+ $('chars').innerHTML=ch;
+ // ---------- front props per scene ----------
+ let fr='';
+ // airport: suitcase
+ if(fA>0) fr+=`<g opacity="${fA}" transform="translate(640,1350)"><rect x="-20" y="-120" width="12" height="90" fill="#495057"/><rect x="8" y="-120" width="12" height="90" fill="#495057"/><rect x="-20" y="-126" width="40" height="14" rx="6" fill="#495057"/><rect x="-80" y="-40" width="160" height="230" rx="24" fill="#E03131"/><path d="M-40 -30 V180 M0 -30 V180 M40 -30 V180" stroke="#C92A2A" stroke-width="8"/><rect x="-60" y="10" width="60" height="36" rx="6" fill="#FFD43B"/>${T(-30,36,18,'ZC','#212529',900,'middle')}</g>`;
+ // metro: ticket machine
+ if(fM>0){const st=t<E.tap2?0:(t<E.ok2?1:2); fr+=`<g opacity="${fM}">${ticketMachine(880,1150,0.7,st,t,ease(seg(t,E.ok2+.2,E.ok2+.9)))}</g>`;}
+ // bazaar: counter + POS + souvenir
+ if(fB>0){const st=t<E.tap3?0:(t<E.ok3?1:2), cup=ease(seg(t,E.ok3+.1,E.ok3+.6));
+   fr+=`<g opacity="${fB}"><rect x="0" y="1290" width="1080" height="36" rx="8" fill="#A0602E"/><rect x="0" y="1320" width="1080" height="320" fill="#7A4520"/>
+   <g opacity=".3">${[0,1,2,3,4,5,6,7,8].map(i=>`<path d="M${i*130+30} 1620 V1400 Q${i*130+80} 1340 ${i*130+130} 1400 V1620" fill="none" stroke="#4E2A10" stroke-width="6"/>`).join('')}</g>
+   ${posTerminal(600,1215,0.42,st,t)}
+   <g transform="translate(${lerp(1000,790,cup)},1250)" opacity="${cup}"><path d="M-30 40 Q-44 0 -16 -30 L-16 -50 L16 -50 L16 -30 Q44 0 30 40Z" fill="#1C7ED6"/><path d="M-30 6 H30" stroke="#fff" stroke-width="6"/><circle cx="0" cy="20" r="7" fill="#FFD43B"/></g></g>`;}
+ $('front').innerHTML=fr;
+ // ---------- fx ----------
+ let fx='';
+ for(const [ev,cx,cy] of [[E.ok2,700,1150],[E.ok3,540,1150]]){ if(t>=ev&&t<ev+3){const dt=t-ev; const cols=['#FFD43B','#7C3AED','#C4A7FF','#51CF66','#FF6B6B','#4DABF7'];
+  const n=ev===E.ok3?80:36;
+  for(let i=0;i<n;i++){const r1=Math.sin(i*12.9898)*43758.5453, r=r1-Math.floor(r1); const r2=Math.sin(i*78.233)*12345.678, q=r2-Math.floor(r2);
+   const ang=-Math.PI/2+(r-.5)*2.4, sp=600+q*800; const x=cx+Math.cos(ang)*sp*dt, y=cy+Math.sin(ang)*sp*dt+900*dt*dt; if(y>1950)continue;
+   fx+=`<rect x="${x}" y="${y}" width="18" height="30" rx="4" fill="${cols[i%6]}" transform="rotate(${(i*47+dt*500*(q-.5))} ${x} ${y})" opacity="${1-seg(dt,2.2,3)}"/>`}}}
+ // scene transition flash label
+ for(const [ev,lab] of [[E.s1,'صحنه ۱'],[E.s2,'صحنه ۲'],[E.s3,'صحنه ۳']]){const k=seg(t,ev-.25,ev+.05)*(1-seg(t,ev+.5,ev+.8)); if(k>0) fx+=`<g opacity="${k}" transform="translate(540,${1000-30*(1-k)})"><rect x="-130" y="-46" width="260" height="84" rx="42" fill="#FFD43B"/><text y="16" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="44" fill="#1E1440" style="direction:rtl">${lab}</text></g>`}
+ $('fx').innerHTML=fx;
+ // ---------- subtitles ----------
+ let sub='';
+ for(const k in C.lines){const c=C.cues[k]; if(t>=c[0]-.1&&t<=c[0]+c[1]+.25){const l=C.lines[k];
+   const k2=seg(t,c[0]-.1,c[0]+.1); sub=`<div class="sb" style="opacity:${k2};transform:translateY(${(1-k2)*20}px)">${l.who?`<div class="who" style="background:${l.col}">${l.who}</div><br>`:''}<div class="tx">${l.t}</div></div>`}}
+ $('subs').innerHTML=sub;
+ // ---------- CTA ----------
+ const ct=ease(seg(t,E.cta,E.cta+.6)); $('cta').style.opacity=ct; $('cta').style.transform=`scale(${1.08-0.08*ct})`;
+ $('ctain').style.transform=`translateY(${(1-ct)*60}px)`; $('subs').style.opacity=1-ct;
+}
+function pinIcon(k){
+ if(k==='hotel') return `<g transform="translate(0,-112)"><rect x="-22" y="-4" width="44" height="16" rx="4" fill="#7C3AED"/><rect x="-22" y="-14" width="14" height="12" rx="4" fill="#7C3AED"/><rect x="-24" y="10" width="6" height="10" fill="#7C3AED"/><rect x="18" y="10" width="6" height="10" fill="#7C3AED"/></g>`;
+ if(k==='metro') return `<g transform="translate(0,-112)"><text y="16" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="44" fill="#1971C2">M</text></g>`;
+ return `<g transform="translate(0,-112)"><rect x="-20" y="-10" width="40" height="32" rx="5" fill="#E03131"/><path d="M-10 -10 V-16 Q0 -30 10 -16 V-10" stroke="#E03131" stroke-width="5" fill="none"/></g>`;
+}
+window.render=render;
+</script></body></html>

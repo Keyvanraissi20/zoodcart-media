@@ -19,3 +19,10 @@ Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
   hair styles `hairBob`+`beret`, `hairShortCurl`+`beardGrey`, `apronSvg` (option `apron`), option `hold` (prop drawn with the arms).
 - IMPORTANT: inline SVG inside an rtl parent renders text-anchor start on the wrong side -> CSS `svg text{direction:ltr}` is set.
 - Subtitles at top:1335 (end above 1600). Voices: narrator Kore, host Negar Aoede, barista Orus. Format F3, mode حضوری.
+2026-11-25 STORY variant "trip-day" (scene_story_trip.html + build_story_trip.py + mix_story_trip.py), format F5 montage, mode سفر:
+- 3 crossfading backgrounds (reusable): `bgAirport()` (window + taxiing `plane(x,y,sc)` + DEPARTURES board), `bgMetro()` (tiles, blue stripe, M sign, Metro/Line board),
+  `bgBazaar()` (arches, souvenir shelves, striped awning, lanterns, "Souvenir Corner" sign). Opacity driven by E.s2/E.s3.
+- Panel pages: hook route map with 3 pins + flying plane, hotel booking checkout (card auto-fill, "Pay & Book" -> "Booking confirmed"),
+  metro `ticketMachine(x,y,sc,state,t,ticketK)` close-up (Tap -> Processing -> Approved, ticket slides out), POS close-up, badges آنلاین/حضوری/توی سفر.
+- Scene label pills ("صحنه ۱/۲/۳") flash at each scene change. New looks: `capBlue`+`backpackStraps` (traveler), `hairBunGrey`+`scarfSvg` (shopkeeper), `phoneInHandS(h,glow,skin)`.
+- TTS lines started with "صحنه‌ی اول/دوم/سوم" -> cut off with atrim (pause found via RMS) to stay < 35 s; better: don't voice scene labels. Voices: Kore, Puck (Arash), Zephyr (shopkeeper).
