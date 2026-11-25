@@ -1,0 +1,333 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- 2026-11-25 REEL variant "grocery-tap" (1080x1920, in-person / حضوری): supermarket checkout abroad.
+     bgSupermarket() (shelves + "Fresh Market" sign + ceiling lights), checkout counter with conveyor belt & groceries,
+     posTerminalX() with state 3 = Declined, bank card attempt, Wallet "Add" page, phone tap, receipt printing. -->
+<style>
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Medium.ttf);font-weight:500}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Bold.ttf);font-weight:700}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Black.ttf);font-weight:900}
+svg text{direction:ltr;unicode-bidi:embed}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0E2A1F;font-family:Vaz,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#panel{position:absolute;left:80px;top:255px;width:920px;height:620px;border-radius:40px;background:#F7F5FF;box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;transform-origin:50% 0%}
+#hdr{position:absolute;left:0;right:0;top:0;height:100px;background:#1E1440;display:flex;align-items:center;justify-content:center;gap:20px;direction:rtl}
+.stp{font-size:30px;font-weight:900;color:#1E1440;background:#FFD43B;border-radius:999px;padding:2px 24px}
+.ht{font-size:40px;font-weight:900;color:#fff}
+.pg{position:absolute;left:0;top:100px;width:920px;height:520px;opacity:0}
+.card{width:500px;height:300px;border-radius:30px;background:linear-gradient(135deg,#9F67FF 0%,#7C3AED 45%,#4C1D95 100%);position:relative;box-shadow:0 20px 50px rgba(124,58,237,.5);direction:ltr;text-align:left;overflow:hidden}
+.card .chip{position:absolute;left:44px;top:108px;width:76px;height:56px;border-radius:12px;background:linear-gradient(135deg,#FFE29A,#D4A537)}
+.card .nm{position:absolute;left:44px;top:32px;font-size:34px;font-weight:900;color:#fff}
+.card .vt{position:absolute;right:40px;top:40px;font-size:22px;font-weight:700;color:#E9DDFF;letter-spacing:3px}
+.card .num{position:absolute;left:44px;bottom:40px;font-size:32px;font-weight:700;color:#fff;letter-spacing:4px}
+.card .vs{position:absolute;right:40px;bottom:32px;font-size:44px;font-weight:900;font-style:italic;color:#fff}
+#subs{position:absolute;left:50px;right:50px;top:1345px;direction:rtl;text-align:center}
+.sb{display:inline-block;background:rgba(14,22,30,.88);border-radius:30px;padding:20px 34px 24px;border:3px solid rgba(255,212,59,.4);max-width:980px}
+.who{display:inline-block;font-size:28px;font-weight:900;color:#fff;border-radius:999px;padding:4px 22px;margin-bottom:6px}
+.tx{font-size:44px;font-weight:700;color:#fff;line-height:1.5}
+#cta{background:linear-gradient(180deg,#0B0820,#1A1035);direction:rtl;text-align:center;opacity:0}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);background:#7C3AED}
+.pill{display:inline-block;background:#7C3AED;color:#fff;font-weight:700;border-radius:999px}
+.opill{display:inline-block;border:5px solid #C4A7FF;color:#C4A7FF;font-weight:700;border-radius:999px}
+</style></head>
+<body><div id="stage">
+<svg id="room" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="chars" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="front" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="panel">
+  <div id="hdr"><span class="stp" id="stp"></span><span class="ht" id="ht"></span></div>
+  <div class="pg" id="pgPos" style="background:linear-gradient(180deg,#EAF7EE,#C9E9D3)"><svg id="posSvg" width="920" height="520" viewBox="0 0 920 520"></svg></div>
+  <div class="pg" id="pgWal" style="background:#111"><svg id="walletSvg" width="920" height="520" viewBox="0 0 920 520"></svg></div>
+</div>
+<svg id="fx" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="subs"></div>
+<div id="cta" class="layer">
+  <div class="glow" style="left:-250px;top:250px;width:800px;height:800px;opacity:.45"></div>
+  <div class="glow" style="left:550px;top:1050px;width:750px;height:750px;opacity:.35"></div>
+  <div style="position:absolute;left:0;right:0;top:300px" id="ctain">
+    <div class="pill" style="font-size:52px;padding:16px 56px">توی سفر، با گوشیت پرداخت کن</div>
+    <div class="card" style="margin:70px auto 0;transform:rotate(-6deg)"><div class="nm">zoodcart</div><div class="vt">VIRTUAL CARD</div><div class="chip"></div><div class="num">•••• 4826</div><div class="vs">VISA</div></div>
+    <div style="font-size:150px;font-weight:900;color:#fff;direction:ltr;margin-top:60px;line-height:1.1">zoodcart.ir</div>
+    <div style="font-size:48px;color:#BEBACD;font-weight:500;margin-top:14px;direction:rtl">افزودن به <span style="direction:ltr;unicode-bidi:embed">Apple Wallet</span> و <span style="direction:ltr;unicode-bidi:embed">Google Wallet</span></div>
+    <div style="font-size:42px;color:#C4A7FF;font-weight:700;margin-top:22px">احراز هویت امن + فاکتور رسمی</div>
+    <div class="opill" style="font-size:50px;padding:12px 70px;margin-top:40px">لینک در بیو</div>
+  </div>
+</div>
+</div>
+<script>
+const C = window.CUES; const AMP = window.AMPS; const FPS=30;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const lerp=(a,b,x)=>a+(b-a)*x;
+const L=(p,q,x)=>[lerp(p[0],q[0],x),lerp(p[1],q[1],x)];
+function amp(key,t){const c=C.cues[key]; if(!c) return 0; const s=c[0],d=c[1]; if(t<s||t>s+d) return 0; const a=AMP[key]; const i=Math.floor((t-s)*FPS); return a[Math.min(i,a.length-1)]||0}
+const $=id=>document.getElementById(id);
+const E=C.ev;
+
+// ---------- café background ----------
+function room(){
+ let s=`<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5C3A28"/><stop offset="1" stop-color="#3A2418"/></linearGradient>
+ <radialGradient id="lamp" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD8A0" stop-opacity=".45"/><stop offset="1" stop-color="#FFD8A0" stop-opacity="0"/></radialGradient></defs>
+ <rect width="1080" height="1920" fill="url(#wall)"/>`;
+ // brick pattern
+ for(let r=0;r<40;r++)for(let c=0;c<12;c++){const x=c*100+(r%2?50:0)-50,y=r*48; s+=`<rect x="${x+3}" y="${y+3}" width="94" height="42" rx="6" fill="#6B4430" opacity="${0.25+0.2*Math.abs(Math.sin(r*3.1+c*7.7))}"/>`}
+ // window with city
+ s+=`<g transform="translate(700,960)"><rect width="330" height="270" rx="20" fill="#2B1A12"/><rect x="14" y="14" width="302" height="242" rx="12" fill="#8EC5FC"/>
+   <rect x="30" y="140" width="60" height="116" fill="#5C7CFA"/><rect x="100" y="100" width="70" height="156" fill="#748FFC"/><rect x="180" y="160" width="50" height="96" fill="#5C7CFA"/><rect x="240" y="120" width="66" height="136" fill="#91A7FF"/>
+   <path d="M165 14 L165 256 M14 135 L316 135" stroke="#2B1A12" stroke-width="10"/></g>`;
+ // shelf with cups/jars on left
+ s+=`<g transform="translate(40,1000)"><rect width="330" height="18" rx="6" fill="#A0714A"/>`;
+ const cc=['#FFFFFF','#FFD43B','#E64980','#20C997','#FFFFFF'];
+ for(let i=0;i<5;i++) s+=`<rect x="${14+i*64}" y="-62" width="48" height="62" rx="8" fill="${cc[i]}"/><path d="M${62+i*64} -46 q18 4 0 26" stroke="${cc[i]}" stroke-width="8" fill="none"/>`;
+ s+=`</g>`;
+ // pendant lights
+ for(const x of [180,540,900]){s+=`<circle cx="${x}" cy="1000" r="260" fill="url(#lamp)"/><path d="M${x} 900 L${x} 940" stroke="#2B1A12" stroke-width="5"/><path d="M${x-50} 980 Q${x} 920 ${x+50} 980Z" fill="#FFB84D"/>`}
+ // cafe name sign (above characters, below panel)
+ s+=`<g transform="translate(540,960)"><rect x="-150" y="-28" width="300" height="64" rx="32" fill="#2B1A12" stroke="#FFD43B" stroke-width="4"/><text x="0" y="16" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="36" fill="#FFD43B">Café Luna</text></g>`;
+ s+=`<rect y="1640" width="1080" height="280" fill="#21140D"/>`;
+ return s;
+}
+$('room').innerHTML=room();
+
+// ---------- character (same engine as scene.html) ----------
+function arm(sh,hand,col,skin,thumb,point){
+ let s=`<path d="M${sh[0]} ${sh[1]} Q ${(sh[0]+hand[0])/2+(sh[0]<0?-40:40)} ${(sh[1]+hand[1])/2+30} ${hand[0]} ${hand[1]}" stroke="${col}" stroke-width="58" fill="none" stroke-linecap="round"/>`;
+ s+=`<circle cx="${hand[0]}" cy="${hand[1]}" r="32" fill="${skin}"/>`;
+ if(thumb) s+=`<rect x="${hand[0]-9}" y="${hand[1]-62}" width="18" height="40" rx="9" fill="${skin}"/>`;
+ if(point) s+=`<rect x="${hand[0]-70}" y="${hand[1]-9}" width="50" height="18" rx="9" fill="${skin}"/>`;
+ return s;
+}
+function character(o){
+ const sk=o.skin, dk=o.skinDark;
+ let s=`<g transform="translate(${o.x},${o.y}) scale(${o.sc||1}) rotate(${o.rot||0})">`+(o.hairBack||'');
+ const tl=o.torso||340;
+ const back = o.handL[1]>200 && o.handR[1]>200;
+ const arms = arm([-120,175],o.handL,o.shirt2,sk,false,o.pointL)+arm([120,175],o.handR,o.shirt2,sk,o.thumbR,false)+(o.hold||'');
+ if(back) s+=arms;
+ s+=`<path d="M -160 ${tl} Q -165 160 -70 130 L 70 130 Q 165 160 160 ${tl} Z" fill="${o.shirt}"/>`;
+ s+=`<path d="M -70 132 Q 0 210 70 132" fill="none" stroke="${o.shirt2}" stroke-width="16" stroke-linecap="round"/>`;
+ s+=(o.apron||'');
+ s+=`<rect x="-30" y="78" width="60" height="62" rx="20" fill="${dk}"/>`;
+ if(!back) s+=arms;
+ s+=`<circle cx="-100" cy="12" r="22" fill="${dk}"/><circle cx="100" cy="12" r="22" fill="${dk}"/>`;
+ s+=`<ellipse cx="0" cy="0" rx="104" ry="108" fill="${sk}"/>`;
+ s+=o.hairSvg;
+ const ey=o.blink?2:24, lx=o.lookx||0, ly=o.looky||0;
+ for(const ex of [-38,38]){
+   s+=`<ellipse cx="${ex}" cy="2" rx="19" ry="${ey}" fill="#fff"/>`;
+   if(!o.blink) s+=`<circle cx="${ex+lx}" cy="${4+ly}" r="11" fill="#1B1430"/><circle cx="${ex+lx+4}" cy="${ly-1}" r="3.5" fill="#fff"/>`;
+ }
+ if(o.glasses) s+=`<g fill="none" stroke="#1B1430" stroke-width="6"><circle cx="-38" cy="2" r="30"/><circle cx="38" cy="2" r="30"/><path d="M-8 -2 L8 -2"/></g>`;
+ const B={neutral:[-40,-40],angry:[-26,-46],sad:[-52,-34],up:[-60,-56],happy:[-48,-44]}[o.brow];
+ s+=`<path d="M -60 ${B[1]} L -18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/><path d="M 60 ${B[1]} L 18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/>`;
+ s+=`<circle cx="-62" cy="40" r="16" fill="#FF8787" opacity=".35"/><circle cx="62" cy="40" r="16" fill="#FF8787" opacity=".35"/>`;
+ if(o.beard) s+=o.beard;
+ const op=o.open||0, m=o.mouth;
+ if(op>0.06){
+   const h=10+44*Math.min(1,op*1.4);
+   s+=`<path d="M -34 48 Q 0 ${48+h*1.5} 34 48 Z" fill="#5C1A1A"/><path d="M -18 ${48+h*0.9} Q 0 ${48+h*1.3} 18 ${48+h*0.9} Q 0 ${48+h*0.6} -18 ${48+h*0.9}Z" fill="#FF6B6B"/>`;
+ } else if(m==='smile') s+=`<path d="M -30 46 Q 0 74 30 46" stroke="#5C1A1A" stroke-width="9" fill="none" stroke-linecap="round"/>`;
+ else if(m==='big') s+=`<path d="M -40 42 Q 0 108 40 42 Z" fill="#5C1A1A"/><path d="M -20 74 Q 0 92 20 74 Q 0 66 -20 74Z" fill="#FF6B6B"/>`;
+ else if(m==='o') s+=`<ellipse cx="0" cy="58" rx="14" ry="18" fill="#5C1A1A"/>`;
+ else s+=`<path d="M -22 56 L 22 56" stroke="#5C1A1A" stroke-width="9" stroke-linecap="round"/>`;
+ s+=(o.extra||'');
+ return s+'</g>';
+}
+// hair styles
+const hairBob=`<path d="M -116 40 Q -130 -130 0 -128 Q 130 -130 116 40 L 96 40 Q 96 -40 60 -60 Q 0 -40 -50 -70 Q -96 -40 -96 40 Z" fill="#1B1B1B"/>`;
+const beret=`<ellipse cx="-10" cy="-112" rx="112" ry="38" fill="#E8590C" transform="rotate(-10 0 -112)"/><circle cx="-14" cy="-150" r="10" fill="#E8590C"/>`;
+const hairShortCurl=(()=>{let s='';const pts=[[-88,-56],[-62,-92],[-24,-112],[18,-114],[56,-98],[86,-64]];for(const p of pts)s+=`<circle cx="${p[0]}" cy="${p[1]}" r="34" fill="#C9C9C9"/>`;return s})();
+const beardGrey=`<path d="M -96 20 Q -90 120 0 128 Q 90 120 96 20 Q 70 80 0 84 Q -70 80 -96 20Z" fill="#C9C9C9"/>`;
+const apronSvg=`<path d="M -80 170 L 80 170 L 96 560 L -96 560 Z" fill="#F1F3F5"/><path d="M -80 172 L -120 140 M 80 172 L 120 140" stroke="#F1F3F5" stroke-width="10"/><rect x="-40" y="240" width="80" height="46" rx="8" fill="#DEE2E6"/>`;
+function phoneInHand(h,glow){return `<g transform="translate(${h[0]},${h[1]-40}) rotate(-12)"><rect x="-34" y="-62" width="68" height="124" rx="14" fill="#1E1E2E"/><rect x="-28" y="-54" width="56" height="106" rx="9" fill="${glow?'#7C3AED':'#4C1D95'}"/><rect x="-22" y="-20" width="44" height="28" rx="5" fill="#C4A7FF"/></g><circle cx="${h[0]}" cy="${h[1]+10}" r="30" fill="#8D5524"/>`}
+function sparkles(t){let s='';const P=[[-150,-120],[150,-140],[-170,40],[170,20],[0,-190]];P.forEach((p,i)=>{const k=0.6+0.4*Math.sin(t*8+i*1.7);s+=`<path transform="translate(${p[0]},${p[1]}) scale(${k})" d="M0 -26 Q 4 -4 26 0 Q 4 4 0 26 Q -4 4 -26 0 Q -4 -4 0 -26Z" fill="#FFD43B"/>`});return s}
+function arcs(x,y,k,col,rot){let s=`<g transform="translate(${x},${y}) rotate(${rot||0})" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round">`;for(let i=0;i<3;i++){const r=26+i*24;const o=clamp(k*3-i,0,1);s+=`<path d="M ${r*0.5} ${-r*0.87} A ${r} ${r} 0 0 1 ${r*0.5} ${r*0.87}" opacity="${o}"/>`}return s+'</g>'}
+
+// ---------- POS terminal (reusable): state 0 tap, 1 processing, 2 approved ----------
+function posTerminal(x,y,sc,state,t){
+ let scr='';
+ if(state===0) scr=`<text x="0" y="-40" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#fff">Tap</text>`+arcs(-14,10,(t*1.5)%1,'#C4A7FF',0);
+ else if(state===1) scr=`<g transform="translate(0,-14) rotate(${t*500})"><circle r="30" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><path d="M0 -30 A30 30 0 0 1 30 0" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></g><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="24" fill="#fff">Processing</text>`;
+ else scr=`<circle cx="0" cy="-14" r="40" fill="#2F9E44"/><path d="M-18 -14 L-5 0 L20 -28" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="28" fill="#8CE99A">Approved</text>`;
+ let keys='';for(let r=0;r<3;r++)for(let c=0;c<3;c++)keys+=`<rect x="${-66+c*48}" y="${130+r*36}" width="40" height="28" rx="7" fill="#495057"/>`;
+ return `<g transform="translate(${x},${y}) scale(${sc})"><rect x="-100" y="-130" width="200" height="380" rx="34" fill="#343A40"/><rect x="-82" y="-110" width="164" height="210" rx="16" fill="${state===2?'#0B3D1E':'#1E1440'}"/>${scr}${keys}</g>`;
+}
+function phoneBig(x,y,rot,lit){return `<g transform="translate(${x},${y}) rotate(${rot})"><rect x="-90" y="-170" width="180" height="340" rx="32" fill="#1E1E2E"/><rect x="-78" y="-156" width="156" height="312" rx="24" fill="#0F0B1E"/>
+ <rect x="-30" y="-150" width="60" height="14" rx="7" fill="#1E1E2E"/>
+ <g transform="translate(0,-40)"><rect x="-66" y="-42" width="132" height="84" rx="12" fill="#7C3AED"/><text x="-52" y="-12" font-family="Vaz" font-weight="900" font-size="16" fill="#fff">zoodcart</text><text x="50" y="30" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="20" fill="#fff">VISA</text></g>
+ <text x="0" y="70" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="18" fill="${lit?'#8CE99A':'#C4A7FF'}">${lit?'Done':'Hold near reader'}</text></g>`}
+
+
+// ---------- supermarket background (reusable) ----------
+function bgSupermarket(){
+ let s=`<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E3F4EA"/><stop offset="1" stop-color="#BFE3CC"/></linearGradient>
+ <radialGradient id="lite" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".7"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient></defs>
+ <rect width="1080" height="1920" fill="url(#wall)"/>`;
+ // ceiling lights
+ for(const x of [180,540,900]) s+=`<ellipse cx="${x}" cy="40" rx="220" ry="110" fill="url(#lite)"/><rect x="${x-110}" y="18" width="220" height="22" rx="11" fill="#F8F9FA" stroke="#CED4DA" stroke-width="3"/>`;
+ // store sign (top, above panel)
+ s+=`<g transform="translate(540,170)"><rect x="-210" y="-42" width="420" height="84" rx="42" fill="#2B8A3E" stroke="#FFFFFF" stroke-width="6"/><text x="0" y="16" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="46" fill="#fff">Fresh Market</text></g>`;
+ // shelves (3 units) behind characters
+ const pal=['#FA5252','#FAB005','#40C057','#228BE6','#BE4BDB','#FD7E14','#15AABF','#F06595','#FFFFFF'];
+ for(let u=0;u<3;u++){const ux=20+u*350;
+   s+=`<rect x="${ux}" y="760" width="330" height="560" rx="10" fill="#E9ECEF" stroke="#ADB5BD" stroke-width="4"/>`;
+   for(let r=0;r<5;r++){const y=820+r*104;
+     s+=`<rect x="${ux+8}" y="${y+60}" width="314" height="12" rx="4" fill="#868E96"/>`;
+     let x=ux+16; let i=0;
+     while(x<ux+300){const h1=Math.sin(u*31+r*7.3+i*3.9)*43758.5; const q=h1-Math.floor(h1);
+       const col=pal[Math.floor(q*pal.length)]; const kind=Math.floor(q*997)%3;
+       if(kind===0){const w=34,h=40+q*14; s+=`<rect x="${x}" y="${y+60-h}" width="${w}" height="${h}" rx="5" fill="${col}"/><rect x="${x+4}" y="${y+60-h*0.65}" width="${w-8}" height="${h*0.28}" fill="#fff" opacity=".7"/>`; x+=w+6}
+       else if(kind===1){s+=`<rect x="${x}" y="${y+20}" width="28" height="40" rx="12" fill="${col}"/><rect x="${x+2}" y="${y+28}" width="24" height="12" fill="#fff" opacity=".6"/>`; x+=34}
+       else {s+=`<rect x="${x+8}" y="${y+4}" width="12" height="16" rx="3" fill="${col}"/><path d="M${x} ${y+60} L${x} ${y+30} Q${x+14} ${y+14} ${x+28} ${y+30} L${x+28} ${y+60}Z" fill="${col}" opacity=".85"/>`; x+=34}
+       i++;}
+   }
+   s+=`<rect x="${ux+100}" y="724" width="130" height="44" rx="10" fill="#FFD43B"/><text x="${ux+165}" y="756" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="26" fill="#1E1440">Aisle ${u+1}</text>`;
+ }
+ s+=`<rect y="1640" width="1080" height="280" fill="#183A2A"/>`;
+ return s;
+}
+$('room').innerHTML=bgSupermarket();
+
+// POS with Declined state (3) — reusable wrapper around posTerminal()
+function posTerminalX(x,y,sc,state,t,dt){
+ if(state!==3) return posTerminal(x,y,sc,state,t);
+ const sh=Math.sin((dt||0)*40)*8*Math.max(0,1-(dt||0)*2.5);
+ let keys='';for(let r=0;r<3;r++)for(let c=0;c<3;c++)keys+=`<rect x="${-66+c*48}" y="${130+r*36}" width="40" height="28" rx="7" fill="#495057"/>`;
+ return `<g transform="translate(${x+sh*sc},${y}) scale(${sc})"><rect x="-100" y="-130" width="200" height="380" rx="34" fill="#343A40"/><rect x="-82" y="-110" width="164" height="210" rx="16" fill="#4A0E0E"/>
+ <circle cx="0" cy="-14" r="40" fill="#E03131"/><path d="M-16 -30 L16 2 M16 -30 L-16 2" stroke="#fff" stroke-width="9" stroke-linecap="round"/><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="28" fill="#FFA8A8">Declined</text>${keys}</g>`;
+}
+function bankCard(x,y,rot,sc){return `<g transform="translate(${x},${y}) rotate(${rot}) scale(${sc})"><rect x="-130" y="-80" width="260" height="160" rx="18" fill="#868E96"/><rect x="-130" y="-80" width="260" height="160" rx="18" fill="url(#bk)"/><rect x="-104" y="-30" width="50" height="38" rx="8" fill="#E9C46A"/><text x="-104" y="-44" font-family="Vaz" font-weight="900" font-size="22" fill="#fff">BANK CARD</text><text x="-104" y="56" font-family="Vaz" font-weight="700" font-size="22" fill="#fff" letter-spacing="3">•••• 1290</text></g>`}
+function phoneHold(h,glow,skin){return `<g transform="translate(${h[0]},${h[1]-40}) rotate(-12)"><rect x="-34" y="-62" width="68" height="124" rx="14" fill="#1E1E2E"/><rect x="-28" y="-54" width="56" height="106" rx="9" fill="${glow?'#7C3AED':'#4C1D95'}"/><rect x="-22" y="-20" width="44" height="28" rx="5" fill="#C4A7FF"/></g><circle cx="${h[0]}" cy="${h[1]+10}" r="30" fill="${skin}"/>`}
+function cardHold(h,skin){return `<g transform="translate(${h[0]},${h[1]-36}) rotate(-18)"><rect x="-46" y="-30" width="92" height="58" rx="8" fill="#868E96"/><rect x="-34" y="-12" width="18" height="14" rx="3" fill="#E9C46A"/></g><circle cx="${h[0]}" cy="${h[1]+8}" r="30" fill="${skin}"/>`}
+const hairQuiff=`<path d="M -108 10 Q -118 -116 -10 -128 Q 60 -170 104 -100 Q 118 -60 108 10 Q 98 -50 60 -64 Q 0 -70 -60 -60 Q -98 -46 -108 10Z" fill="#1F1A17"/><path d="M -20 -126 Q 40 -176 96 -118 Q 50 -136 -20 -126Z" fill="#1F1A17"/>`;
+const stubble=`<path d="M -92 30 Q -86 112 0 120 Q 86 112 92 30 Q 70 84 0 88 Q -70 84 -92 30Z" fill="#1F1A17" opacity=".35"/>`;
+const hairAuburnBack=`<path d="M -118 -10 Q -140 150 -150 270 Q -60 300 0 270 Q 60 300 150 270 Q 140 150 118 -10 Z" fill="#8A3B12"/>`;
+const hairAuburn=`<path d="M -110 20 Q -124 -132 0 -126 Q 124 -132 110 20 Q 100 -40 70 -62 Q 20 -96 -20 -66 Q -70 -40 -78 -40 Q -100 -20 -110 20 Z" fill="#8A3B12"/><path d="M -110 0 Q -118 90 -100 150 L -84 150 Q -96 60 -92 0Z" fill="#8A3B12"/><path d="M 110 0 Q 118 90 100 150 L 84 150 Q 96 60 92 0Z" fill="#8A3B12"/><path d="M -104 -70 Q 0 -150 104 -70" stroke="#FCC419" stroke-width="16" fill="none" stroke-linecap="round"/>`;
+const ponyBack=`<path d="M 80 -90 Q 170 -60 150 60 Q 140 120 110 150 Q 130 60 90 -20Z" fill="#2B1B17"/>`;
+const hairCashier=`<path d="M -110 10 Q -120 -124 0 -124 Q 120 -124 110 10 Q 100 -50 0 -62 Q -100 -50 -110 10Z" fill="#2B1B17"/>`;
+const capRed=`<path d="M -112 -30 Q -116 -142 0 -142 Q 116 -142 112 -30 Q 0 -54 -112 -30Z" fill="#E03131"/><path d="M -30 -40 Q -150 -56 -180 -26 Q -130 -14 -30 -24Z" fill="#C92A2A"/><circle cx="0" cy="-140" r="10" fill="#C92A2A"/>`;
+const vestSvg=`<path d="M -150 300 L -150 190 Q -140 150 -80 136 L -40 300Z M 150 300 L 150 190 Q 140 150 80 136 L 40 300Z" fill="#C92A2A"/><rect x="58" y="200" width="70" height="34" rx="6" fill="#fff"/><rect x="66" y="212" width="54" height="8" rx="4" fill="#ADB5BD"/>`;
+
+function render(t){
+ // ---------- panel ----------
+ const onWal = t>=E.wal && t<E.pos2;
+ const pw=seg(t,E.wal,E.wal+.3)*(1-seg(t,E.pos2,E.pos2+.3));
+ $('pgWal').style.opacity=pw; $('pgPos').style.opacity=1-pw;
+ const pin=back(seg(t,0,0.55)); $('panel').style.transform=`scale(${0.6+0.4*pin})`; $('panel').style.opacity=seg(t,0,.2);
+ let stp='',ht='';
+ if(t<E.wal){stp='!';ht=t<E.dec1?'صندوق فروشگاه':'پرداخت انجام نشد'}
+ else if(t<E.pos2){stp='۱';ht='افزودن کارت به Wallet'}
+ else if(t<E.ok){stp='۲';ht='گوشی روی کارتخوان'}
+ else {stp='✓';ht='پرداخت انجام شد'}
+ $('stp').textContent=stp; $('ht').textContent=ht;
+ // POS state
+ let st=0, dt=0;
+ if(t<E.dec1) st=0; else if(t<E.retry){st=3;dt=t-E.dec1} else if(t<E.dec2) st=0; else if(t<E.wal){st=3;dt=t-E.dec2}
+ else if(t<E.pos2) st=0;
+ else if(t<E.tap) st=0; else if(t<E.ok) st=1; else st=2;
+ { let p=posTerminalX(640,240,1.0,st,t,dt);
+   if(t<E.pos2){ // bank card attempts
+     const k1=ease(seg(t,0.5,E.dec1-.2)), k2=ease(seg(t,E.retry,E.dec2-.2));
+     const kk = t<E.retry ? k1*(1-0.5*ease(seg(t,E.dec1+.3,E.retry))) : k2;
+     p+=bankCard(lerp(170,420,kk),lerp(330,250,kk),lerp(-16,6,kk),0.95);
+     if(st===3){const r=back(seg(t,(t<E.retry?E.dec1:E.dec2),(t<E.retry?E.dec1:E.dec2)+.35)); p+=`<g transform="translate(200,90) scale(${r})"><rect x="-120" y="-36" width="240" height="72" rx="36" fill="#E03131"/><text y="12" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="32" fill="#fff">قبول نشد</text></g>`}
+   } else {
+     const k=ease(seg(t,E.pos2+.3,E.tap));
+     const px=lerp(200,460,k), py=lerp(300,240,k);
+     p+=phoneBig(px,py,lerp(-14,8,k),st===2);
+     if(t>=E.tap) p+=arcs(px+100,py-20,(t-E.tap)*2%1,'#7C3AED',0);
+     if(st===2){const r=back(seg(t,E.ok,E.ok+.4)); p+=`<g transform="translate(180,90) scale(${r})"><rect x="-120" y="-36" width="240" height="72" rx="36" fill="#2F9E44"/><text y="12" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="32" fill="#fff">پرداخت شد</text></g>`}
+   }
+   p=`<defs><linearGradient id="bk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ADB5BD"/><stop offset="1" stop-color="#495057"/></linearGradient></defs>`+p;
+   $('posSvg').innerHTML=p; }
+ // wallet page
+ { const pressed=t>=E.add, k=ease(seg(t,E.add,E.add+.6));
+   let w=`<defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9F67FF"/><stop offset="1" stop-color="#4C1D95"/></linearGradient></defs>`;
+   w+=`<text x="60" y="70" font-family="Vaz" font-weight="900" font-size="44" fill="#fff">Wallet</text>`;
+   w+=`<rect x="540" y="370" width="320" height="120" rx="22" fill="#343A40"/><rect x="540" y="330" width="320" height="120" rx="22" fill="#495057"/>`;
+   const cx=lerp(60,540,k), cy=lerp(110,260,k), cs=lerp(1,0.64,k);
+   w+=`<g transform="translate(${cx},${cy}) scale(${cs})"><rect width="500" height="300" rx="30" fill="url(#cg)"/><text x="40" y="66" font-family="Vaz" font-weight="900" font-size="38" fill="#fff">zoodcart</text><text x="460" y="62" text-anchor="end" font-family="Vaz" font-weight="700" font-size="20" fill="#E9DDFF" letter-spacing="3">VIRTUAL CARD</text><rect x="40" y="110" width="76" height="56" rx="12" fill="#E9C46A"/><text x="40" y="258" font-family="Vaz" font-weight="700" font-size="32" fill="#fff" letter-spacing="4">•••• 4826</text><text x="460" y="262" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="46" fill="#fff">VISA</text></g>`;
+   const bs=(t>=E.add&&t<E.add+.15)?0.95:1;
+   if(!pressed||k<1){ w+=`<g transform="translate(720,170) scale(${bs})" opacity="${1-k}"><rect x="-150" y="-46" width="300" height="92" rx="46" fill="#fff"/><text x="0" y="14" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#111">Add to Wallet</text></g>`;
+     if(!pressed) w+=`<circle cx="780" cy="${210+Math.sin(t*5)*6}" r="28" fill="#FFD43B" opacity=".9"/>`; }
+   if(t>=E.add && t<E.add+.5){const r=(t-E.add)/.5; w+=`<circle cx="720" cy="170" r="${40+r*120}" fill="none" stroke="#fff" stroke-width="6" opacity="${1-r}"/>`}
+   const ok=back(seg(t,E.add+.6,E.add+1.0));
+   w+=`<g transform="translate(240,440) scale(${ok})"><circle r="40" fill="#2F9E44"/><path d="M-18 0 L-5 13 L20 -15" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><text x="300" y="455" font-family="Vaz" font-weight="900" font-size="40" fill="#8CE99A" opacity="${ok>0.02?1:0}">Added</text>`;
+   $('walletSvg').innerHTML=w; }
+
+ // ---------- characters ----------
+ const blink=(off)=>((t+off)%3.4)<0.12;
+ // Reza (lead)
+ const R={x:480,y:1095,sc:0.82,skin:'#E0AC69',skinDark:'#C68B4E',shirt:'#0C8599',shirt2:'#0B7285',hairSvg:hairQuiff,beard:stubble,browCol:'#1F1A17',brow:'neutral',mouth:'smile',lookx:14,looky:6,handL:[-100,400],handR:[100,400],extra:''};
+ R.open=amp('r1',t)+amp('r2',t)+amp('r3',t); R.blink=blink(.4);
+ const posLocal=[300,150];
+ if(t<E.wal){ // card attempts
+   const k=t<E.retry?ease(seg(t,0.4,E.dec1-.2))*(1-0.6*ease(seg(t,E.dec1+.3,E.retry))):ease(seg(t,E.retry,E.dec2-.2));
+   R.handR=L([150,300],posLocal,k); R.hold=cardHold(R.handR,R.skin);
+   if(t>=E.dec1){R.brow='sad';R.mouth='o';R.extra=sweat(Math.sin(t*4)*4)}
+   if(t>=E.r1s&&t<E.c1s){R.brow='angry';R.extra=anger()+sweat(Math.sin(t*4)*4);R.handL=L([-100,400],[-200,40],ease(seg(t,E.r1s,E.r1s+.3)))}
+ }
+ if(t>=E.c1s&&t<E.minaIn){R.brow='sad';R.mouth='flat';R.lookx=14}
+ if(t>=E.minaIn&&t<E.m2s){R.lookx=-16;R.looky=0;R.brow='up';R.mouth=t>=E.r2s?'o':'smile'}
+ if(t>=E.r2s&&t<E.m2s){R.handL=L([-100,400],[-210,60],ease(seg(t,E.r2s,E.r2s+.3)))}
+ if(t>=E.m2s&&t<E.ok+0.1){ // phone out, then tap
+   const k=ease(seg(t,E.pos2+.2,E.tap));
+   R.handR=L([170,230],posLocal,k); R.hold=phoneHold(R.handR,t>=E.ok,R.skin); R.lookx=12; R.looky=8; R.brow='neutral';R.mouth='smile';
+ }
+ if(t>=E.ok){R.brow='happy';R.mouth='big';const k=back(seg(t,E.ok+.1,E.ok+.5));R.handL=L([-100,400],[-230,-170],k);R.handR=L([100,400],[230,-170],k);R.hold='';R.extra=sparkles(t);R.y-=24*Math.abs(Math.sin((t-E.ok)*6))*seg(t,E.ok,E.ok+.2)*(1-seg(t,E.cta-.5,E.cta))}
+ // Mina (friend) slides in from left
+ const mk=ease(seg(t,E.minaIn,E.minaIn+.55));
+ const M={x:lerp(-260,170,mk),y:1100,sc:0.8,skin:'#C68642',skinDark:'#A86B32',shirt:'#20C997',shirt2:'#12B886',hairSvg:hairAuburn,hairBack:hairAuburnBack,browCol:'#5C2A0E',brow:'happy',mouth:'smile',lookx:14,looky:0,handL:[-100,400],handR:[100,400]};
+ M.open=amp('m1',t)+amp('m2',t); M.blink=blink(1.3);
+ if(t>=E.minaIn&&t<E.m1s+.6) M.handR=[215,-70+Math.sin(t*14)*20];
+ if(t>=E.m1s+.6&&t<E.ok) {M.thumbR=true; M.handR=L([100,400],[200,80],ease(seg(t,E.m1s+.6,E.m1s+.9)))}
+ if(t>=E.ok){const k=back(seg(t,E.ok+.1,E.ok+.5));M.handL=L([-100,400],[-230,-170],k);M.handR=L([100,400],[230,-170],k);M.mouth='big'}
+ // Cashier
+ const K={x:880,y:1095,sc:0.8,skin:'#F1C27D',skinDark:'#DDA75E',shirt:'#F8F9FA',shirt2:'#DEE2E6',hairSvg:hairCashier+capRed,hairBack:ponyBack,browCol:'#2B1B17',brow:'neutral',mouth:'smile',lookx:-14,looky:4,torso:560,apron:vestSvg,handL:[-110,520],handR:[110,520]};
+ K.open=amp('c1',t); K.blink=blink(2.2);
+ if(t>=E.dec1&&t<E.minaIn){K.brow='sad'}
+ if(t>=E.c1s&&t<E.c1s+cueD('c1')){K.handL=L([-110,520],[-220,200],ease(seg(t,E.c1s,E.c1s+.3)))}
+ if(t>=E.ok){K.brow='happy';K.mouth='big';K.thumbR=true;K.handR=L([110,520],[210,80],back(seg(t,E.ok+.2,E.ok+.6)))}
+ $('chars').innerHTML=character(M)+character(R)+character(K);
+
+ // ---------- front: checkout counter, belt, groceries, POS, receipt ----------
+ let f=`<rect x="0" y="1290" width="1080" height="34" rx="8" fill="#ADB5BD"/><rect x="0" y="1318" width="1080" height="322" fill="#495057"/>
+  <rect x="40" y="1262" width="560" height="36" rx="18" fill="#212529"/>`;
+ for(let i=0;i<14;i++){const x=40+((i*44 - t*40)%560+560)%560; f+=`<rect x="${x}" y="1268" width="6" height="24" fill="#343A40"/>`}
+ // groceries on belt
+ f+=`<g transform="translate(130,1262)"><circle cx="0" cy="-26" r="26" fill="#FA5252"/><path d="M0 -52 q6 -12 14 -14" stroke="#2B8A3E" stroke-width="6" fill="none"/></g>`;
+ f+=`<g transform="translate(220,1262)"><rect x="-26" y="-92" width="52" height="92" rx="4" fill="#fff" stroke="#74C0FC" stroke-width="4"/><path d="M-26 -92 L0 -116 L26 -92Z" fill="#74C0FC"/><text x="0" y="-38" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="18" fill="#1971C2">MILK</text></g>`;
+ f+=`<g transform="translate(330,1262)"><ellipse cx="0" cy="-24" rx="60" ry="26" fill="#E8A54B"/><path d="M-36 -40 q8 10 0 22 M-8 -46 q8 10 0 22 M20 -42 q8 10 0 22" stroke="#C47F2C" stroke-width="5" fill="none"/></g>`;
+ f+=`<g transform="translate(450,1262)"><path d="M-50 -20 Q 0 20 50 -40 Q 0 0 -50 -36Z" fill="#FCC419"/></g>`;
+ f+=`<g transform="translate(540,1262)"><rect x="-22" y="-70" width="44" height="70" rx="10" fill="#40C057"/><rect x="-10" y="-84" width="20" height="16" rx="4" fill="#2B8A3E"/></g>`;
+ // POS on counter + receipt
+ const rk=ease(seg(t,E.ok+.3,E.ok+1.3));
+ if(rk>0) f+=`<rect x="${720-32}" y="${1158-130*rk}" width="64" height="${130*rk}" fill="#fff" stroke="#DEE2E6" stroke-width="2"/>${[0,1,2,3].map(i=>`<rect x="700" y="${1158-130*rk+16+i*24}" width="${40-i%2*12}" height="6" rx="3" fill="#ADB5BD" opacity="${rk}"/>`).join('')}`;
+ f+=posTerminalX(720,1215,0.42,st,t,dt);
+ if(t>=E.tap&&t<E.ok+.4) f+=arcs(650,1170,(t-E.tap)*2%1,'#7C3AED',0);
+ $('front').innerHTML=f;
+ // ---------- fx confetti ----------
+ let fx='';
+ if(t>=E.ok){const d=t-E.ok; const cols=['#FFD43B','#7C3AED','#C4A7FF','#51CF66','#FF6B6B','#4DABF7'];
+  for(let i=0;i<80;i++){const r1=Math.sin(i*12.9898)*43758.5453, r=r1-Math.floor(r1); const r2=Math.sin(i*78.233)*12345.678, q=r2-Math.floor(r2);
+   const ang=-Math.PI/2+(r-.5)*2.4, sp=700+q*900; const x=540+Math.cos(ang)*sp*d, y=1150+Math.sin(ang)*sp*d+900*d*d; if(y>1950)continue;
+   fx+=`<rect x="${x}" y="${y}" width="18" height="30" rx="4" fill="${cols[i%6]}" transform="rotate(${(i*47+d*500*(q-.5))} ${x} ${y})" opacity="${1-seg(d,2.2,3)}"/>`}}
+ $('fx').innerHTML=fx;
+ // ---------- subtitles ----------
+ let sub='';
+ for(const k in C.lines){const c=C.cues[k]; if(t>=c[0]-.1&&t<=c[0]+c[1]+.2){const l=C.lines[k];
+   const k2=seg(t,c[0]-.1,c[0]+.1); sub=`<div class="sb" style="opacity:${k2};transform:translateY(${(1-k2)*20}px)">${l.who?`<div class="who" style="background:${l.col}">${l.who}</div><br>`:''}<div class="tx">${l.t}</div></div>`}}
+ $('subs').innerHTML=sub;
+ // ---------- CTA ----------
+ const ct=ease(seg(t,E.cta,E.cta+.6)); $('cta').style.opacity=ct; $('cta').style.transform=`scale(${1.08-0.08*ct})`;
+ $('ctain').style.transform=`translateY(${(1-ct)*60}px)`; $('subs').style.opacity=1-ct;
+}
+function cueD(k){return C.cues[k]?C.cues[k][1]:0}
+function sweat(dy){return `<path transform="translate(108,${-50+dy})" d="M0 -26 Q 18 2 0 14 Q -18 2 0 -26Z" fill="#74C0FC"/>`}
+function anger(){return `<g transform="translate(-92,-108)" stroke="#FA5252" stroke-width="9" stroke-linecap="round" fill="none"><path d="M-22 -8 Q -8 -8 -8 -22"/><path d="M22 -8 Q 8 -8 8 -22"/><path d="M-22 8 Q -8 8 -8 22"/><path d="M22 8 Q 8 8 8 22"/></g>`}
+window.render=render;
+</script></body></html>
