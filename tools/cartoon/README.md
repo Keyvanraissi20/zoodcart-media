@@ -26,3 +26,9 @@ Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
   metro `ticketMachine(x,y,sc,state,t,ticketK)` close-up (Tap -> Processing -> Approved, ticket slides out), POS close-up, badges آنلاین/حضوری/توی سفر.
 - Scene label pills ("صحنه ۱/۲/۳") flash at each scene change. New looks: `capBlue`+`backpackStraps` (traveler), `hairBunGrey`+`scarfSvg` (shopkeeper), `phoneInHandS(h,glow,skin)`.
 - TTS lines started with "صحنه‌ی اول/دوم/سوم" -> cut off with atrim (pause found via RMS) to stay < 35 s; better: don't voice scene labels. Voices: Kore, Puck (Arash), Zephyr (shopkeeper).
+2026-11-25 REEL variant "grocery-tap" (scene_/build_/mix_2026-11-25-grocery-tap.*), mode حضوری, supermarket checkout abroad:
+- `bgSupermarket()` (procedural product shelves "Aisle 1-3", ceiling lights, "Fresh Market" sign at y≈170), checkout counter with moving conveyor belt + groceries.
+- `posTerminalX(x,y,sc,state,t,dt)` = posTerminal + state 3 "Declined" (red X, shake); `bankCard()` generic grey card attempt; `cardHold()`/`phoneHold()` props in hand;
+  receipt strip printing from the counter POS after approval. 3 characters (friend slides in from left at E.minaIn). Looks: `hairQuiff`+`stubble`, `hairAuburn`(+headband)/`hairAuburnBack`, cashier `capRed`+`ponyBack`+`vestSvg`.
+- Panel: POS close-up (card -> Declined x2 -> later phone -> Approved) and Wallet "Add to Wallet" page. SFX: declined buzz uses gt() (ffmpeg aevalsrc has no '>').
+- Audio was long (~38 s): internal pauses compressed with silenceremove stop_periods=-1 (stop_silence=0.15) + atempo 1.18–1.24. Voices: Kore, Charon (Reza), Aoede (Mina), Zephyr (cashier).
