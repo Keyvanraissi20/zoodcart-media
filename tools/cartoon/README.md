@@ -32,3 +32,11 @@ Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
   receipt strip printing from the counter POS after approval. 3 characters (friend slides in from left at E.minaIn). Looks: `hairQuiff`+`stubble`, `hairAuburn`(+headband)/`hairAuburnBack`, cashier `capRed`+`ponyBack`+`vestSvg`.
 - Panel: POS close-up (card -> Declined x2 -> later phone -> Approved) and Wallet "Add to Wallet" page. SFX: declined buzz uses gt() (ffmpeg aevalsrc has no '>').
 - Audio was long (~38 s): internal pauses compressed with silenceremove stop_periods=-1 (stop_silence=0.15) + atempo 1.18–1.24. Voices: Kore, Charon (Reza), Aoede (Mina), Zephyr (cashier).
+2026-11-26 STORY variant "myth-vs-fact" (scene_story_myth.html + build_story_myth.py + mix_story_myth.py), format F4 quiz, mode آنلاین, coworking space:
+- `bgCowork()` (big window with skyline, "Hub 9 · Cowork" sign at y≈940, pendant lamps, corner plants), wooden desk in front (y 1290+) with one shared `laptopBack(x,y,sc,lit)`
+  between the characters (keep laptops OUT of the face area — a laptop in front of a character hid the mouth) + steaming mug.
+- Panel pages: quiz hook (big "?" + pulsing باور/واقعیت buttons), myth card in HTML (`.myth`) + red `.stamp` "باور غلط!" slamming in (scale 2.2→1),
+  foreign checkout (2 item rows AI plan / online course, card auto-fill, cursor, "Subscribe & Pay" → "Payment successful"), `giftCard()` + envelope with check,
+  safety page: real "zoodcart.ir" row (lock + check) vs suspicious link row (shake, strike-through, red X) + shield line.
+- `qCloud(x,y,k)` thought cloud with "?" over a confused character. New looks: `hairQuiffBrown`+`hoodStrings`+glasses (Behrad), headscarf `scarfBack(c)` (hairBack) + `scarfFront(c)` (hairSvg, with bangs) (Taraneh).
+- Audio was ~39 s raw: internal pauses compressed (silenceremove stop_periods=-1 stop_silence=0.15) + atempo 1.10–1.30 → 33 s. Voices: Kore, Fenrir (Behrad), Leda (Taraneh). SFX: stamp thud.

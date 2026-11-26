@@ -1,0 +1,282 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- 2026-11-26 STORY variant (1080x1920, safe zone y 250..1600): F4 myth-vs-fact quiz, mode آنلاین.
+     bgCowork() coworking background + desk with laptopBack(), 2 characters (Behrad hoodie/glasses, Taraneh headscarf scarfBack/scarfFront),
+     panel pages: quiz hook (باور/واقعیت buttons), myth card + red stamp, foreign checkout (2 items + card autofill), gift card + envelope, safe vs suspicious link. -->
+<style>
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Medium.ttf);font-weight:500}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Bold.ttf);font-weight:700}
+@font-face{font-family:Vaz;src:url(font/package/fonts/ttf/Vazirmatn-Black.ttf);font-weight:900}
+svg text{direction:ltr;unicode-bidi:embed}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#1A0F0A;font-family:Vaz,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.layer{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#panel{position:absolute;left:80px;top:270px;width:920px;height:640px;border-radius:40px;background:#F7F5FF;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;transform-origin:50% 0%}
+#hdr{position:absolute;left:0;right:0;top:0;height:104px;background:#1E1440;display:flex;align-items:center;justify-content:center;gap:20px;direction:rtl}
+.stp{font-size:30px;font-weight:900;color:#1E1440;background:#FFD43B;border-radius:999px;padding:2px 24px}
+.ht{font-size:40px;font-weight:900;color:#fff}
+.pg{position:absolute;left:0;top:104px;width:920px;height:536px;opacity:0}
+.zc{font-size:22px;font-weight:900;color:#fff;background:#7C3AED;border-radius:12px;padding:4px 12px}
+.card{width:500px;height:300px;border-radius:30px;background:linear-gradient(135deg,#9F67FF 0%,#7C3AED 45%,#4C1D95 100%);position:relative;box-shadow:0 20px 50px rgba(124,58,237,.5);direction:ltr;text-align:left;overflow:hidden}
+.card .chip{position:absolute;left:44px;top:108px;width:76px;height:56px;border-radius:12px;background:linear-gradient(135deg,#FFE29A,#D4A537)}
+.card .nm{position:absolute;left:44px;top:32px;font-size:34px;font-weight:900;color:#fff}
+.card .vt{position:absolute;right:40px;top:40px;font-size:22px;font-weight:700;color:#E9DDFF;letter-spacing:3px}
+.card .num{position:absolute;left:44px;bottom:40px;font-size:32px;font-weight:700;color:#fff;letter-spacing:4px}
+.card .vs{position:absolute;right:40px;bottom:32px;font-size:44px;font-weight:900;font-style:italic;color:#fff}
+.card .shine{position:absolute;left:-60%;top:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg)}
+.url{position:absolute;left:60px;right:60px;top:26px;height:60px;border-radius:30px;background:#E6E1F5;display:flex;align-items:center;justify-content:center;gap:12px;font-size:32px;font-weight:700;color:#3B2667;direction:ltr}
+#subs{position:absolute;left:50px;right:50px;top:1335px;direction:rtl;text-align:center}
+.sb{display:inline-block;background:rgba(26,15,10,.86);border-radius:30px;padding:20px 34px 24px;border:3px solid rgba(255,212,59,.4);max-width:980px}
+.who{display:inline-block;font-size:28px;font-weight:900;color:#fff;border-radius:999px;padding:4px 22px;margin-bottom:6px}
+.tx{font-size:44px;font-weight:700;color:#fff;line-height:1.5}
+#cta{background:linear-gradient(180deg,#0B0820,#1A1035);direction:rtl;text-align:center;opacity:0}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);background:#7C3AED}
+.pill{display:inline-block;background:#7C3AED;color:#fff;font-weight:700;border-radius:999px}
+.opill{display:inline-block;border:5px solid #C4A7FF;color:#C4A7FF;font-weight:700;border-radius:999px}
+.badge{width:250px;height:300px;border-radius:30px;background:#fff;box-shadow:0 10px 30px rgba(30,20,64,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;direction:rtl}
+.badge b{font-size:36px;font-weight:900;color:#1E1440}
+.myth{position:absolute;left:70px;right:70px;top:60px;height:300px;border-radius:34px;background:#fff;box-shadow:0 14px 40px rgba(30,20,64,.15);direction:rtl;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:0 40px;text-align:center}
+.myth .q{font-size:30px;font-weight:900;color:#fff;background:#E8590C;border-radius:999px;padding:2px 26px}
+.myth .mt{font-size:44px;font-weight:900;color:#1E1440;line-height:1.45}
+.stamp{position:absolute;left:250px;top:360px;width:420px;height:150px;border:12px solid #E03131;border-radius:26px;color:#E03131;font-size:76px;font-weight:900;display:flex;align-items:center;justify-content:center;direction:rtl;background:rgba(255,255,255,.85)}
+</style></head>
+<body><div id="stage">
+<svg id="room" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="chars" class="layer" viewBox="0 0 1080 1920"></svg>
+<svg id="front" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="panel">
+  <div id="hdr"><span class="stp" id="stp"></span><span class="ht" id="ht"></span></div>
+  <div class="pg" id="pgHook" style="background:linear-gradient(180deg,#FFF9DB,#FFE8A3)"><svg id="hookSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pgMyth" style="background:linear-gradient(180deg,#FFF4E6,#FFD8A8)">
+    <div class="myth"><span class="q">باور رایج</span><div class="mt">«بدون کارت خارجی نمی‌شه<br>اشتراک و دوره‌ی خارجی خرید!»</div></div>
+    <div class="stamp" id="stamp">باور غلط!</div>
+  </div>
+  <div class="pg" id="pgFact" style="background:#F7F5FF"><svg id="factSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pgGift" style="background:linear-gradient(180deg,#FFF0F6,#FCC2D7)"><svg id="giftSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+  <div class="pg" id="pgSafe" style="background:linear-gradient(180deg,#EBFBEE,#C3FAE8)"><svg id="safeSvg" width="920" height="536" viewBox="0 0 920 536"></svg></div>
+</div>
+<svg id="fx" class="layer" viewBox="0 0 1080 1920"></svg>
+<div id="subs"></div>
+<div id="cta" class="layer">
+  <div class="glow" style="left:-250px;top:250px;width:800px;height:800px;opacity:.45"></div>
+  <div class="glow" style="left:550px;top:1050px;width:750px;height:750px;opacity:.35"></div>
+  <div style="position:absolute;left:0;right:0;top:330px" id="ctain">
+    <div class="pill" style="font-size:50px;padding:16px 50px">پرداخت از سایت‌های خارجی</div>
+    <div class="card" style="margin:70px auto 0;transform:rotate(-6deg)"><div class="nm">zoodcart</div><div class="vt">VIRTUAL CARD</div><div class="chip"></div><div class="num">•••• 7731</div><div class="vs">VISA</div></div>
+    <div style="font-size:150px;font-weight:900;color:#fff;direction:ltr;margin-top:60px;line-height:1.1">zoodcart.ir</div>
+    <div style="font-size:54px;color:#BEBACD;font-weight:500;margin-top:14px">ثبت سفارش آنلاین</div>
+    <div style="font-size:42px;color:#C4A7FF;font-weight:700;margin-top:22px">احراز هویت + فاکتور رسمی</div>
+    <div class="opill" style="font-size:50px;padding:12px 70px;margin-top:40px">لینک در بیو</div>
+  </div>
+</div>
+</div>
+<script>
+const C = window.CUES; const AMP = window.AMPS; const FPS=30;
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const lerp=(a,b,x)=>a+(b-a)*x;
+const L=(p,q,x)=>[lerp(p[0],q[0],x),lerp(p[1],q[1],x)];
+function amp(key,t){const c=C.cues[key]; if(!c) return 0; const s=c[0],d=c[1]; if(t<s||t>s+d) return 0; const a=AMP[key]; const i=Math.floor((t-s)*FPS); return a[Math.min(i,a.length-1)]||0}
+const $=id=>document.getElementById(id);
+const E=C.ev;
+const T=(x,y,s,f,c,w,a)=>`<text x="${x}" y="${y}" ${a?`text-anchor="${a}"`:''} font-family="Vaz" font-weight="${w||900}" font-size="${s}" fill="${c||'#fff'}">${f}</text>`;
+// ---------- coworking background (reusable): bgCowork() ----------
+function bgCowork(){
+ let s=`<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A5D8FF"/><stop offset="1" stop-color="#E7F5FF"/></linearGradient></defs>
+ <rect width="1080" height="1920" fill="#EFE6D8"/>`;
+ // big window with skyline
+ s+=`<rect x="40" y="880" width="1000" height="400" rx="10" fill="url(#sky)"/>`;
+ const bl=[[60,1080,90],[160,1010,70],[240,1110,110],[360,990,80],[450,1060,100],[560,1030,70],[640,1100,120],[770,1000,90],[870,1070,80],[960,1040,70]];
+ for(const [x,y,w] of bl){s+=`<rect x="${x}" y="${y}" width="${w}" height="${1280-y}" fill="#91A7FF" opacity=".75"/>`; for(let yy=y+20;yy<1260;yy+=36)for(let xx=x+12;xx<x+w-14;xx+=26) s+=`<rect x="${xx}" y="${yy}" width="12" height="16" fill="#E7F5FF" opacity=".7"/>`}
+ for(let x=40;x<=1040;x+=250) s+=`<rect x="${x-7}" y="880" width="14" height="400" fill="#343A40"/>`;
+ s+=`<rect x="40" y="872" width="1000" height="16" fill="#343A40"/><rect x="40" y="1272" width="1000" height="16" fill="#343A40"/>`;
+ // sign
+ s+=`<g transform="translate(540,940)"><rect x="-190" y="-34" width="380" height="70" rx="35" fill="#1E1440"/>${T(0,14,36,'Hub 9 · Cowork','#FFD43B',900,'middle')}</g>`;
+ // pendant lamps
+ for(const x of [200,880]) s+=`<path d="M${x} 860 V930" stroke="#343A40" stroke-width="4"/><path d="M${x-44} 970 Q${x} 910 ${x+44} 970Z" fill="#FAB005"/><ellipse cx="${x}" cy="972" rx="44" ry="8" fill="#FFF3BF"/>`;
+ // plants in corners
+ const plant=(x,y,sc)=>{let p=`<g transform="translate(${x},${y}) scale(${sc})"><path d="M-50 0 L50 0 L38 110 L-38 110Z" fill="#E8590C"/>`;for(let i=0;i<7;i++){const a=-150+i*20;p+=`<ellipse cx="${Math.cos(a*Math.PI/180)*70}" cy="${Math.sin(a*Math.PI/180)*90}" rx="22" ry="62" fill="${i%2?'#2F9E44':'#40C057'}" transform="rotate(${a+90} ${Math.cos(a*Math.PI/180)*70} ${Math.sin(a*Math.PI/180)*90})"/>`}return p+'</g>'};
+ s+=plant(60,1200,1)+plant(1020,1200,1);
+ s+=`<rect y="1288" width="1080" height="640" fill="#B08968"/>`;
+ return s;
+}
+$('room').innerHTML=bgCowork();
+// ---------- character (same engine as scene.html) ----------
+function arm(sh,hand,col,skin,thumb,point){
+ let s=`<path d="M${sh[0]} ${sh[1]} Q ${(sh[0]+hand[0])/2+(sh[0]<0?-40:40)} ${(sh[1]+hand[1])/2+30} ${hand[0]} ${hand[1]}" stroke="${col}" stroke-width="58" fill="none" stroke-linecap="round"/>`;
+ s+=`<circle cx="${hand[0]}" cy="${hand[1]}" r="32" fill="${skin}"/>`;
+ if(thumb) s+=`<rect x="${hand[0]-9}" y="${hand[1]-62}" width="18" height="40" rx="9" fill="${skin}"/>`;
+ if(point) s+=`<rect x="${hand[0]-70}" y="${hand[1]-9}" width="50" height="18" rx="9" fill="${skin}"/>`;
+ return s;
+}
+function character(o){
+ const sk=o.skin, dk=o.skinDark;
+ let s=`<g transform="translate(${o.x},${o.y}) scale(${o.sc||1}) rotate(${o.rot||0})">`+(o.hairBack||'');
+ const tl=o.torso||340;
+ const back = o.handL[1]>200 && o.handR[1]>200;
+ const arms = arm([-120,175],o.handL,o.shirt2,sk,false,o.pointL)+arm([120,175],o.handR,o.shirt2,sk,o.thumbR,false)+(o.hold||'');
+ if(back) s+=arms;
+ s+=`<path d="M -160 ${tl} Q -165 160 -70 130 L 70 130 Q 165 160 160 ${tl} Z" fill="${o.shirt}"/>`;
+ s+=`<path d="M -70 132 Q 0 210 70 132" fill="none" stroke="${o.shirt2}" stroke-width="16" stroke-linecap="round"/>`;
+ s+=(o.apron||'');
+ s+=`<rect x="-30" y="78" width="60" height="62" rx="20" fill="${dk}"/>`;
+ if(!back) s+=arms;
+ s+=`<circle cx="-100" cy="12" r="22" fill="${dk}"/><circle cx="100" cy="12" r="22" fill="${dk}"/>`;
+ s+=`<ellipse cx="0" cy="0" rx="104" ry="108" fill="${sk}"/>`;
+ s+=o.hairSvg;
+ const ey=o.blink?2:24, lx=o.lookx||0, ly=o.looky||0;
+ for(const ex of [-38,38]){
+   s+=`<ellipse cx="${ex}" cy="2" rx="19" ry="${ey}" fill="#fff"/>`;
+   if(!o.blink) s+=`<circle cx="${ex+lx}" cy="${4+ly}" r="11" fill="#1B1430"/><circle cx="${ex+lx+4}" cy="${ly-1}" r="3.5" fill="#fff"/>`;
+ }
+ if(o.glasses) s+=`<g fill="none" stroke="#1B1430" stroke-width="6"><circle cx="-38" cy="2" r="30"/><circle cx="38" cy="2" r="30"/><path d="M-8 -2 L8 -2"/></g>`;
+ const B={neutral:[-40,-40],angry:[-26,-46],sad:[-52,-34],up:[-60,-56],happy:[-48,-44]}[o.brow];
+ s+=`<path d="M -60 ${B[1]} L -18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/><path d="M 60 ${B[1]} L 18 ${B[0]}" stroke="${o.browCol}" stroke-width="11" stroke-linecap="round"/>`;
+ s+=`<circle cx="-62" cy="40" r="16" fill="#FF8787" opacity=".35"/><circle cx="62" cy="40" r="16" fill="#FF8787" opacity=".35"/>`;
+ if(o.beard) s+=o.beard;
+ const op=o.open||0, m=o.mouth;
+ if(op>0.06){
+   const h=10+44*Math.min(1,op*1.4);
+   s+=`<path d="M -34 48 Q 0 ${48+h*1.5} 34 48 Z" fill="#5C1A1A"/><path d="M -18 ${48+h*0.9} Q 0 ${48+h*1.3} 18 ${48+h*0.9} Q 0 ${48+h*0.6} -18 ${48+h*0.9}Z" fill="#FF6B6B"/>`;
+ } else if(m==='smile') s+=`<path d="M -30 46 Q 0 74 30 46" stroke="#5C1A1A" stroke-width="9" fill="none" stroke-linecap="round"/>`;
+ else if(m==='big') s+=`<path d="M -40 42 Q 0 108 40 42 Z" fill="#5C1A1A"/><path d="M -20 74 Q 0 92 20 74 Q 0 66 -20 74Z" fill="#FF6B6B"/>`;
+ else if(m==='o') s+=`<ellipse cx="0" cy="58" rx="14" ry="18" fill="#5C1A1A"/>`;
+ else s+=`<path d="M -22 56 L 22 56" stroke="#5C1A1A" stroke-width="9" stroke-linecap="round"/>`;
+ s+=(o.extra||'');
+ return s+'</g>';
+}
+// hair styles
+const hairBob=`<path d="M -116 40 Q -130 -130 0 -128 Q 130 -130 116 40 L 96 40 Q 96 -40 60 -60 Q 0 -40 -50 -70 Q -96 -40 -96 40 Z" fill="#1B1B1B"/>`;
+const beret=`<ellipse cx="-10" cy="-112" rx="112" ry="38" fill="#E8590C" transform="rotate(-10 0 -112)"/><circle cx="-14" cy="-150" r="10" fill="#E8590C"/>`;
+const hairShortCurl=(()=>{let s='';const pts=[[-88,-56],[-62,-92],[-24,-112],[18,-114],[56,-98],[86,-64]];for(const p of pts)s+=`<circle cx="${p[0]}" cy="${p[1]}" r="34" fill="#C9C9C9"/>`;return s})();
+const beardGrey=`<path d="M -96 20 Q -90 120 0 128 Q 90 120 96 20 Q 70 80 0 84 Q -70 80 -96 20Z" fill="#C9C9C9"/>`;
+const apronSvg=`<path d="M -80 170 L 80 170 L 96 560 L -96 560 Z" fill="#F1F3F5"/><path d="M -80 172 L -120 140 M 80 172 L 120 140" stroke="#F1F3F5" stroke-width="10"/><rect x="-40" y="240" width="80" height="46" rx="8" fill="#DEE2E6"/>`;
+function phoneInHand(h,glow){return `<g transform="translate(${h[0]},${h[1]-40}) rotate(-12)"><rect x="-34" y="-62" width="68" height="124" rx="14" fill="#1E1E2E"/><rect x="-28" y="-54" width="56" height="106" rx="9" fill="${glow?'#7C3AED':'#4C1D95'}"/><rect x="-22" y="-20" width="44" height="28" rx="5" fill="#C4A7FF"/></g><circle cx="${h[0]}" cy="${h[1]+10}" r="30" fill="#8D5524"/>`}
+function sparkles(t){let s='';const P=[[-150,-120],[150,-140],[-170,40],[170,20],[0,-190]];P.forEach((p,i)=>{const k=0.6+0.4*Math.sin(t*8+i*1.7);s+=`<path transform="translate(${p[0]},${p[1]}) scale(${k})" d="M0 -26 Q 4 -4 26 0 Q 4 4 0 26 Q -4 4 -26 0 Q -4 -4 0 -26Z" fill="#FFD43B"/>`});return s}
+function arcs(x,y,k,col,rot){let s=`<g transform="translate(${x},${y}) rotate(${rot||0})" fill="none" stroke="${col}" stroke-width="9" stroke-linecap="round">`;for(let i=0;i<3;i++){const r=26+i*24;const o=clamp(k*3-i,0,1);s+=`<path d="M ${r*0.5} ${-r*0.87} A ${r} ${r} 0 0 1 ${r*0.5} ${r*0.87}" opacity="${o}"/>`}return s+'</g>'}
+
+// ---------- POS terminal (reusable): state 0 tap, 1 processing, 2 approved ----------
+function posTerminal(x,y,sc,state,t){
+ let scr='';
+ if(state===0) scr=`<text x="0" y="-40" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="34" fill="#fff">Tap</text>`+arcs(-14,10,(t*1.5)%1,'#C4A7FF',0);
+ else if(state===1) scr=`<g transform="translate(0,-14) rotate(${t*500})"><circle r="30" stroke="rgba(255,255,255,.3)" stroke-width="8" fill="none"/><path d="M0 -30 A30 30 0 0 1 30 0" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/></g><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="24" fill="#fff">Processing</text>`;
+ else scr=`<circle cx="0" cy="-14" r="40" fill="#2F9E44"/><path d="M-18 -14 L-5 0 L20 -28" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="0" y="62" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="28" fill="#8CE99A">Approved</text>`;
+ let keys='';for(let r=0;r<3;r++)for(let c=0;c<3;c++)keys+=`<rect x="${-66+c*48}" y="${130+r*36}" width="40" height="28" rx="7" fill="#495057"/>`;
+ return `<g transform="translate(${x},${y}) scale(${sc})"><rect x="-100" y="-130" width="200" height="380" rx="34" fill="#343A40"/><rect x="-82" y="-110" width="164" height="210" rx="16" fill="${state===2?'#0B3D1E':'#1E1440'}"/>${scr}${keys}</g>`;
+}
+function phoneBig(x,y,rot,lit){return `<g transform="translate(${x},${y}) rotate(${rot})"><rect x="-90" y="-170" width="180" height="340" rx="32" fill="#1E1E2E"/><rect x="-78" y="-156" width="156" height="312" rx="24" fill="#0F0B1E"/>
+ <rect x="-30" y="-150" width="60" height="14" rx="7" fill="#1E1E2E"/>
+ <g transform="translate(0,-40)"><rect x="-66" y="-42" width="132" height="84" rx="12" fill="#7C3AED"/><text x="-52" y="-12" font-family="Vaz" font-weight="900" font-size="16" fill="#fff">zoodcart</text><text x="50" y="30" text-anchor="end" font-family="Vaz" font-weight="900" font-style="italic" font-size="20" fill="#fff">VISA</text></g>
+ <text x="0" y="70" text-anchor="middle" font-family="Vaz" font-weight="700" font-size="18" fill="${lit?'#8CE99A':'#C4A7FF'}">${lit?'Done':'Hold near reader'}</text></g>`}
+// ---------- new looks (2026-11-26 myth story) ----------
+const hairQuiffBrown=`<path d="M -108 10 Q -118 -116 -10 -128 Q 60 -170 104 -100 Q 118 -60 108 10 Q 98 -50 60 -64 Q 0 -70 -60 -60 Q -98 -46 -108 10Z" fill="#5C3B1E"/><path d="M -20 -126 Q 40 -176 96 -118 Q 50 -136 -20 -126Z" fill="#5C3B1E"/>`;
+const hoodStrings=`<path d="M -40 150 V230 M 40 150 V230" stroke="#FFF3BF" stroke-width="8" stroke-linecap="round"/><circle cx="-40" cy="234" r="8" fill="#FFF3BF"/><circle cx="40" cy="234" r="8" fill="#FFF3BF"/>`;
+// headscarf: back part (hairBack) + front band with bangs (hairSvg)
+const scarfBack=(c)=>`<path d="M -132 40 Q -152 -162 0 -158 Q 152 -162 132 40 Q 142 150 92 196 L -92 196 Q -142 150 -132 40Z" fill="${c}"/>`;
+const scarfFront=(c)=>`<path d="M -114 20 Q -124 -146 0 -142 Q 124 -146 114 20 Q 106 -62 44 -80 Q -10 -64 -60 -74 Q -104 -54 -114 20Z" fill="${c}"/><path d="M -86 -50 Q -30 -96 46 -76 Q -4 -70 -86 -50Z" fill="#3B2314"/><path d="M -100 -100 Q 0 -150 100 -100" stroke="#FFF" stroke-width="5" fill="none" opacity=".35"/>`;
+function qCloud(x,y,k){return `<g transform="translate(${x},${y}) scale(${k})"><circle cx="0" cy="0" r="56" fill="#fff"/><circle cx="-46" cy="18" r="34" fill="#fff"/><circle cx="46" cy="16" r="36" fill="#fff"/><circle cx="-60" cy="80" r="12" fill="#fff"/><circle cx="-76" cy="106" r="7" fill="#fff"/>${T(0,24,70,'?','#E8590C',900,'middle')}</g>`}
+function laptopBack(x,y,sc,lit){return `<g transform="translate(${x},${y}) scale(${sc})"><path d="M-150 0 L-130 -190 L130 -190 L150 0Z" fill="#ADB5BD"/><path d="M-140 -6 L-122 -182 L122 -182 L140 -6Z" fill="#CED4DA"/><g transform="translate(0,-96)"><rect x="-34" y="-22" width="68" height="44" rx="10" fill="#7C3AED"/>${T(0,9,22,'zc','#fff',900,'middle')}</g>${lit?`<ellipse cx="0" cy="-200" rx="160" ry="14" fill="#C4A7FF" opacity=".5"/>`:''}<rect x="-170" y="0" width="340" height="16" rx="8" fill="#868E96"/></g>`}
+function giftCard(x,y,sc,rot){return `<g transform="translate(${x},${y}) scale(${sc}) rotate(${rot})"><rect x="-190" y="-120" width="380" height="240" rx="26" fill="url(#gg)"/><rect x="-40" y="-120" width="34" height="240" fill="#FFD43B"/><rect x="-190" y="-20" width="380" height="30" fill="#FFD43B"/>
+ <path d="M-23 -20 Q-90 -90 -60 -100 Q-30 -105 -23 -20Z M-23 -20 Q40 -90 14 -100 Q-14 -105 -23 -20Z" fill="#FCC419" stroke="#E67700" stroke-width="4"/>${T(170,-70,30,'GIFT CARD','#fff',900,'end')}${T(170,90,22,'International','#FFE3EC',700,'end')}</g>`}
+
+function render(t){
+ // ---------- panel pages ----------
+ const pages=[['pgHook',0,E.m1],['pgMyth',E.m1,E.f1],['pgFact',E.f1,E.g1],['pgGift',E.g1,E.s1],['pgSafe',E.s1,99]];
+ for(const [id,a,b] of pages){const o=seg(t,a,a+.3)*(1-seg(t,b,b+.3));$(id).style.opacity=o;$(id).style.transform=`translateX(${(1-seg(t,a,a+.3))*-60}px)`}
+ let stp,ht;
+ if(t<E.m1){stp='کوییز';ht='باور یا واقعیت؟'}
+ else if(t<E.f1){stp='باور';ht='درسته یا غلط؟'}
+ else if(t<E.g1){stp='واقعیت';ht='خرید از سایت‌های خارجی'}
+ else if(t<E.s1){stp='واقعیت';ht='گیفت کارت بین‌المللی'}
+ else {stp='نکته';ht='مراقب لینک مشکوک باش'}
+ $('stp').textContent=stp; $('ht').textContent=ht;
+ const pin=back(seg(t,0,0.55)); $('panel').style.transform=`scale(${0.6+0.4*pin})`; $('panel').style.opacity=seg(t,0,.2);
+ // hook: two answer buttons + big ?
+ { let h=''; const pulse=1+0.06*Math.sin(t*9);
+   h+=`<g transform="translate(460,190) scale(${back(seg(t,.2,.7))*pulse})"><circle r="110" fill="#1E1440"/>${T(0,48,150,'?','#FFD43B',900,'middle')}</g>`;
+   const bt=[[240,'#E03131','باور'],[680,'#2F9E44','واقعیت']];
+   bt.forEach(([x,c,l],i)=>{const k=back(seg(t,.5+i*.25,.9+i*.25)); const hi=(Math.floor(t*3)%2===i)?1.06:1;
+    h+=`<g transform="translate(${x},420) scale(${k*hi})"><rect x="-170" y="-56" width="340" height="112" rx="56" fill="${c}"/><text y="18" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="50" fill="#fff" style="direction:rtl">${l}</text></g>`});
+   $('hookSvg').innerHTML=h; }
+ // myth stamp
+ { const k=seg(t,E.stamp,E.stamp+.25); const sc=lerp(2.2,1,ease(k)); $('stamp').style.opacity=k; $('stamp').style.transform=`rotate(-10deg) scale(${sc})`; }
+ // fact: checkout on a foreign site
+ { const pressed=t>=E.pay, ok=back(seg(t,E.pay+.4,E.pay+.8)), fill=seg(t,E.f1+.6,E.f1+1.3);
+   let b=`<rect x="60" y="22" width="800" height="60" rx="30" fill="#E6E1F5"/><rect x="300" y="38" width="16" height="16" rx="3" fill="#2B8A3E"/>${T(330,64,30,'smart-tools.app','#3B2667',700)}`;
+   const rows=[['AI Pro plan · monthly','#7C3AED','ai'],['Online course · Design','#1C7ED6','play']];
+   rows.forEach(([nm,c,ic],i)=>{const y=110+i*92, k=back(seg(t,E.f1+.3+i*.2,E.f1+.7+i*.2));
+    b+=`<g transform="translate(0,${y}) scale(1,${k})"><rect x="60" y="0" width="800" height="76" rx="18" fill="#fff" stroke="#E6E1F5" stroke-width="3"/><rect x="78" y="12" width="52" height="52" rx="14" fill="${c}"/>`+
+    (ic==='ai'?`<circle cx="96" cy="38" r="6" fill="#fff"/><circle cx="112" cy="38" r="6" fill="#fff"/><rect x="92" y="18" width="24" height="6" rx="3" fill="#fff"/>`:`<path d="M96 24 L118 38 L96 52Z" fill="#fff"/>`)+
+    T(150,50,30,nm,'#1E1440',700)+`<circle cx="820" cy="38" r="16" fill="${t>=E.pay?'#2F9E44':'#DEE2E6'}"/></g>`});
+   b+=`<rect x="60" y="300" width="800" height="80" rx="18" fill="#fff" stroke="#C4A7FF" stroke-width="4"/>${T(84,350,24,'Card','#868E96',700)}`;
+   b+=`<g opacity="${fill}"><rect x="170" y="312" width="96" height="56" rx="10" fill="#7C3AED"/>${T(180,334,13,'zoodcart')}${T(258,362,15,'VISA','#fff',900,'end')}${T(290,352,30,'•••• 7731','#1E1440',700)}</g>`;
+   const bs=(t>=E.pay&&t<E.pay+.15)?0.95:1;
+   b+=`<g transform="translate(460,456) scale(${bs})"><rect x="-230" y="-44" width="460" height="88" rx="44" fill="${pressed?'#2F9E44':'#7C3AED'}"/>${T(0,13,34,pressed?'Payment successful':'Subscribe &amp; Pay','#fff',900,'middle')}</g>`;
+   if(!pressed&&t>E.f1+1.3){const k=ease(seg(t,E.f1+1.3,E.pay)); b+=`<path transform="translate(${lerp(760,520,k)},${lerp(260,470,k)})" d="M0 0 L0 40 L11 30 L20 48 L28 44 L19 27 L34 27Z" fill="#1E1440" stroke="#fff" stroke-width="3"/>`}
+   if(t>=E.pay&&t<E.pay+.5){const r=(t-E.pay)/.5; b+=`<circle cx="460" cy="456" r="${50+r*140}" fill="none" stroke="#7C3AED" stroke-width="6" opacity="${1-r}"/>`}
+   b+=`<g transform="translate(800,456) scale(${ok})"><circle r="38" fill="#2F9E44"/><path d="M-17 0 L-5 12 L19 -13" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+   $('factSvg').innerHTML=b; }
+ // gift card page
+ { const k=back(seg(t,E.g1+.2,E.g1+.8)); const sent=t>=E.gift;
+   let g=`<defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F06595"/><stop offset="1" stop-color="#AE3EC9"/></linearGradient></defs>`;
+   g+=giftCard(lerp(460,330,ease(seg(t,E.gift,E.gift+.5))),250,k*0.95,lerp(-8,-4,k)+Math.sin(t*3)*2);
+   // envelope to the friend
+   const ek=back(seg(t,E.gift,E.gift+.5));
+   g+=`<g transform="translate(720,260) scale(${ek})"><rect x="-110" y="-70" width="220" height="150" rx="16" fill="#fff"/><path d="M-110 -66 L0 20 L110 -66" stroke="#F06595" stroke-width="8" fill="none"/><circle cx="76" cy="-70" r="30" fill="#2F9E44"/><path d="M62 -70 L72 -60 L90 -80" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round"/></g>`;
+   if(sent){const r=back(seg(t,E.gift+.3,E.gift+.7)); g+=`<g transform="translate(460,470) scale(${r})"><rect x="-200" y="-40" width="400" height="80" rx="40" fill="#C2255C"/><text y="14" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="36" fill="#fff" style="direction:rtl">هدیه برای تولد دوستم</text></g>`}
+   for(let i=0;i<6;i++){const p=((t*0.6+i/6)%1); g+=`<path transform="translate(${120+i*140},${520-p*480}) scale(${0.6+0.3*Math.sin(i)})" d="M0 8 C-14 -8 -26 6 0 26 C26 6 14 -8 0 8Z" fill="#F06595" opacity="${(1-p)*0.6}"/>`}
+   $('giftSvg').innerHTML=g; }
+ // safety page: real site vs suspicious link
+ { let s='';
+   const k1=back(seg(t,E.s1+.3,E.s1+.7)), k2=back(seg(t,E.s1+.8,E.s1+1.2));
+   s+=`<g transform="translate(460,150) scale(${k1})"><rect x="-380" y="-60" width="760" height="120" rx="30" fill="#fff" stroke="#2F9E44" stroke-width="6"/><rect x="-330" y="-20" width="30" height="30" rx="6" fill="#2F9E44"/><path d="M-325 -20 V-30 Q-315 -46 -305 -30 V-20" stroke="#2F9E44" stroke-width="5" fill="none"/>${T(-270,16,48,'zoodcart.ir','#1E1440',900)}<circle cx="310" cy="0" r="38" fill="#2F9E44"/><path d="M292 0 L305 13 L328 -14" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+   const sh=t>E.s1+1.2&&t<E.s1+1.6?Math.sin(t*60)*8:0;
+   s+=`<g transform="translate(${460+sh},310) scale(${k2})"><rect x="-380" y="-60" width="760" height="120" rx="30" fill="#FFF5F5" stroke="#E03131" stroke-width="6"/>${T(-330,14,38,'free-gift-card.xyz/claim','#C92A2A',700)}<path d="M-340 2 H200" stroke="#E03131" stroke-width="6" opacity="${seg(t,E.s1+1.3,E.s1+1.6)}"/><circle cx="310" cy="0" r="38" fill="#E03131"/><path d="M294 -16 L326 16 M326 -16 L294 16" stroke="#fff" stroke-width="9" stroke-linecap="round"/></g>`;
+   const k3=back(seg(t,E.s1+1.8,E.s1+2.2));
+   s+=`<g transform="translate(460,460) scale(${k3})"><path d="M-30 -40 L0 -52 L30 -40 V-6 Q30 24 0 38 Q-30 24 -30 -6Z" transform="translate(-330,0)" fill="#2F9E44"/><text x="30" y="14" text-anchor="middle" font-family="Vaz" font-weight="900" font-size="36" fill="#1E1440" style="direction:rtl">سفارش فقط از سایت خود زودکارت</text></g>`;
+   $('safeSvg').innerHTML=s; }
+
+ // ---------- characters ----------
+ const blink=(off)=>((t+off)%3.4)<0.12;
+ const B={x:290,y:1070,sc:0.9,skin:'#F1C27D',skinDark:'#D9A55B',shirt:'#F08C00',shirt2:'#E67700',hairSvg:hairQuiffBrown,apron:hoodStrings,glasses:true,browCol:'#5C3B1E',brow:'neutral',mouth:'smile',lookx:0,looky:-10,handL:[-100,400],handR:[100,400]};
+ const R={x:800,y:1070,sc:0.9,skin:'#D9A066',skinDark:'#B9804A',shirt:'#F8F0FC',shirt2:'#E5DBFF',hairBack:scarfBack('#0CA678'),hairSvg:scarfFront('#0CA678'),browCol:'#3B2314',brow:'neutral',mouth:'smile',lookx:0,looky:-10,handL:[-100,400],handR:[100,400]};
+ B.open=amp('b1',t)+amp('b2',t); R.open=amp('t1',t)+amp('t2',t); B.blink=blink(.3); R.blink=blink(1.7);
+ if(t<E.m1){B.brow='up';R.brow='up';B.lookx=6;R.lookx=-6;B.looky=-16;R.looky=-16;B.mouth='o'}
+ // myth: Behrad shrugs, sad
+ if(t>=E.m1&&t<E.f1){const k=back(seg(t,E.m1,E.m1+.4)); B.brow='sad'; B.handL=L([-100,400],[-240,170],k); B.handR=L([100,400],[240,170],k); B.lookx=12; R.lookx=-14; R.looky=0; R.brow='neutral'; R.mouth='flat'}
+ // fact: Taraneh points at the panel, Behrad surprised
+ if(t>=E.f1&&t<E.g1){const k=back(seg(t,E.f1,E.f1+.4)); R.handL=L([-100,400],[-200,-160],k); R.pointL=false; R.brow='happy'; R.lookx=-10; R.looky=-12; B.lookx=14; B.looky=-4; B.brow='up'; B.mouth='o'; if(t>=E.pay){B.mouth='big';B.brow='happy'}}
+ // gift: Behrad excited, hands up
+ if(t>=E.g1&&t<E.s1){const k=back(seg(t,E.g1,E.g1+.4)); B.handL=L([-100,400],[-230,-160],k); B.handR=L([100,400],[230,-160],k); B.brow='up'; B.mouth='big'; B.extra=sparkles(t); B.y-=16*Math.abs(Math.sin((t-E.g1)*6)); R.mouth='big'; R.brow='happy'; R.lookx=-14; R.looky=0}
+ // safety: Taraneh raises a thumb, Behrad nods
+ if(t>=E.s1){const k=back(seg(t,E.s1,E.s1+.4)); R.thumbR=true; R.handR=L([100,400],[220,-120],k); R.brow='neutral'; R.lookx=-6; R.looky=-6; B.lookx=14; B.looky=Math.sin(t*7)*6; B.mouth='smile'; B.brow='happy'}
+ if(t>=E.cta-.3){B.mouth='big';R.mouth='big'}
+ let ch=character(B)+character(R);
+ if(t>=E.m1+.3&&t<E.f1+.3){const k=back(seg(t,E.m1+.3,E.m1+.7))*(1-seg(t,E.f1,E.f1+.3)); ch+=qCloud(470,900,k)}
+ $('chars').innerHTML=ch;
+ // ---------- front: coworking desk with laptops + mug ----------
+ let fr=`<rect x="0" y="1290" width="1080" height="34" rx="8" fill="#DDB892"/><rect x="0" y="1320" width="1080" height="330" fill="#9C6644"/><rect x="0" y="1320" width="1080" height="14" fill="#7F5539"/>`;
+ fr+=laptopBack(545,1296,0.6,t>=E.pay&&t<E.g1);
+ fr+=`<g transform="translate(110,1250)"><rect x="-30" y="-10" width="60" height="56" rx="10" fill="#fff"/><path d="M30 4 Q52 4 52 22 Q52 38 30 38" stroke="#fff" stroke-width="8" fill="none"/><rect x="-30" y="0" width="60" height="12" fill="#7C3AED"/>${[0,1].map(i=>`<path d="M${-10+i*20} -20 q8 -14 0 -28" stroke="#ADB5BD" stroke-width="4" fill="none" opacity="${.4+.3*Math.sin(t*4+i)}"/>`).join('')}</g>`;
+ $('front').innerHTML=fr;
+ // ---------- fx: confetti on pay and gift ----------
+ let fx='';
+ for(const [ev,cx,cy,n] of [[E.pay,540,1100,60],[E.gift,540,1000,80]]){ if(t>=ev&&t<ev+3){const dt=t-ev; const cols=['#FFD43B','#7C3AED','#C4A7FF','#51CF66','#FF6B6B','#4DABF7'];
+  for(let i=0;i<n;i++){const r1=Math.sin(i*12.9898)*43758.5453, r=r1-Math.floor(r1); const r2=Math.sin(i*78.233)*12345.678, q=r2-Math.floor(r2);
+   const ang=-Math.PI/2+(r-.5)*2.4, sp=600+q*800; const x=cx+Math.cos(ang)*sp*dt, y=cy+Math.sin(ang)*sp*dt+900*dt*dt; if(y>1950)continue;
+   fx+=`<rect x="${x}" y="${y}" width="18" height="30" rx="4" fill="${cols[i%6]}" transform="rotate(${(i*47+dt*500*(q-.5))} ${x} ${y})" opacity="${1-seg(dt,2.2,3)}"/>`}}}
+ $('fx').innerHTML=fx;
+ // ---------- subtitles ----------
+ let sub='';
+ for(const k in C.lines){const c=C.cues[k]; if(t>=c[0]-.1&&t<=c[0]+c[1]+.25){const l=C.lines[k];
+   const k2=seg(t,c[0]-.1,c[0]+.1); sub=`<div class="sb" style="opacity:${k2};transform:translateY(${(1-k2)*20}px)">${l.who?`<div class="who" style="background:${l.col}">${l.who}</div><br>`:''}<div class="tx">${l.t}</div></div>`}}
+ $('subs').innerHTML=sub;
+ // ---------- CTA ----------
+ const ct=ease(seg(t,E.cta,E.cta+.6)); $('cta').style.opacity=ct; $('cta').style.transform=`scale(${1.08-0.08*ct})`;
+ $('ctain').style.transform=`translateY(${(1-ct)*60}px)`; $('subs').style.opacity=1-ct;
+}
+window.render=render;
+</script></body></html>
