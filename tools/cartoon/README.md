@@ -40,3 +40,9 @@ Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
   safety page: real "zoodcart.ir" row (lock + check) vs suspicious link row (shake, strike-through, red X) + shield line.
 - `qCloud(x,y,k)` thought cloud with "?" over a confused character. New looks: `hairQuiffBrown`+`hoodStrings`+glasses (Behrad), headscarf `scarfBack(c)` (hairBack) + `scarfFront(c)` (hairSvg, with bangs) (Taraneh).
 - Audio was ~39 s raw: internal pauses compressed (silenceremove stop_periods=-1 stop_silence=0.15) + atempo 1.10–1.30 → 33 s. Voices: Kore, Fenrir (Behrad), Leda (Taraneh). SFX: stamp thud.
+2026-11-27 STORY variant "host" (scene_story_host.html + build_story_host.py + mix_story_host.py), format F2 host-to-viewer, mode حضوری:
+- `bgStreet()` shopping street at dusk (sky gradient, far buildings, "Paper Moon Books" storefront left, street lamp, sidewalk), small street `vendingMachine()` right.
+- `vendingMachine(x,y,sc,state 0 Tap|1 Processing|2 Approved,t,drop 0..1)` with contactless reader + can dropping into tray. `taxiInterior(t,state)` = back of front seat with TAXI strip, mounted posTerminal, side window with scrolling city.
+- Host look: `hairCurlyTop` + `headset` mic + `jacketTrim` (option apron), counts places with a big yellow number bubble `#cnt` (۱/۲/۳) + pulsing highlight rect on the matching storefront (`#hl` layer).
+- Panel pages: hook (phone + آنلاین check vs حضوری "?" flipping to check at E.no), 3 badges intro, Wallet "Add to Wallet", bookshop counter with small cashier `character()` inside the panel svg (sc .55, `hairRedBun`), vending close-up, taxi close-up. Keep the phone BESIDE the terminal screen, not over it.
+- Audio ~35 s raw → pauses compressed + atempo 1.12–1.22 → 32.3 s. Voices: Kore, Orus (host Kian), Aoede (cashier).
