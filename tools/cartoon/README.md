@@ -51,3 +51,11 @@ Tip: if total > 38 s, use atempo≈1.18 on the longest clips.
 - Panel pages: shop checkout (`gameCover()` invented "SKY DRIFT", card field, "Buy now", red "Payment failed" banner with shake x2, cursor), zoodcart.ir HTML page with 3 check rows (احراز هویت / شارژ با کارت بانکی / ویزا کارت آماده‌ست) ticking at E.k1..k3 + glowing card, checkout again with typed "VISA •••• 4826" autofill → "Payment successful" → `dlBar()` download progress.
 - Looks: `hairTopBun` + hoodie strings (option apron) for Ava, `beanie` + `beardFull` + glasses for Pouya. Keep the phone hand y<200 so the arm is drawn in front of the torso (both hands >200 = arms behind body).
 - Audio ~42 s raw → pauses compressed + atempo 1.12–1.2 → 38.3 s. Voices: Kore, Zephyr (Ava), Fenrir (Pouya). SFX: error buzz, check ticks, success beep.
+2026-11-28 STORY variant "dinner" (scene_story_dinner.html + build_story_dinner.py + mix_story_dinner.py), format F1 dialogue, mode سفر, restaurant on a trip at night:
+- `bgTrattoria(t)` (terracotta plaster wall, arched window with night street + moon, chalk MENU board right, twinkling string lights at y≈860–930, "Trattoria Sole" sign at y≈150 in the decorative top zone).
+  Front: checkered tablecloth to the bottom (y 1290–1920), two pasta plates, lemonade glasses, flickering candle, "BILL" folder sliding in.
+- 3 characters: Kaveh (`hairShortBlack` + `mustache` beard slot, teal shirt), Golnaz (`hairWavyBack`/`hairWavyFront` with pink band + `earrings` in extra), waiter (`hairSlick` + `waiterVest` with bow tie) sliding in from x 1300→870 for the tap and out after.
+  `handPos(h,state,t,skin)` = small posTerminal held in the waiter's hand; `sweat(x,y,t)` drop for a worried face; `phoneHold()`, `bankCard()` copied in.
+- Panel pages: restaurant bill (items appear, TOTAL as a bar, no prices) + big "?", bank card with red no-sign + "Not accepted", Wallet phone (card slides into stack → "Ready to tap") + Apple Pay / Google Pay text pills,
+  POS close-up (Tap → Processing → Approved, phone stays to the right of the terminal), museum e-ticket "Paid online" (online + travel combo).
+- Audio ~33 s raw → pauses compressed (stop_silence 0.15) + atempo 1.12 → 31.3 s. Voices: Kore, Charon (Kaveh), Leda (Golnaz), Puck (waiter). Video render takes >2 min → run with a long timeout.
